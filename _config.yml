@@ -9,3 +9,9 @@ navigation:
     url: example
   - title: Tropes
     url: tropes
+  - title: Budget
+    url: budget
+  - title: Production Country
+    url: country
+  - title: Movie Release Timing
+    url: timing
