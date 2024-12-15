@@ -14,7 +14,7 @@ In this section, we will explore the impact of release dates on a movie's succes
 
 <script>
   // Data for each dataset
-  var seasons = ['Fall', 'Spring', 'Winter', 'Summer'];
+  var seasons = ['Fall', 'Spring', 'Summer','Winter'];
 
   var movies_count = [11648, 10270, 10007, 8876];
   var avg_scores = [57.635928, 57.439815, 57.000971, 57.611792];
