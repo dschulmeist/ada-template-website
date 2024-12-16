@@ -1,0 +1,19 @@
+theme: jekyll-theme-minimal
+title: ACTOR SUCCESS
+description: A bluesweater datastory
+show_downloads: True
+navigation:
+  - title: Home
+    url: /
+  # - title: Example
+  #   url: example
+  - title: Tropes
+    url: tropes
+  - title: Budget
+    url: budget
+  - title: Production Country
+    url: country
+  - title: Movie Release Timing
+    url: timing
+  - title: Oscars
+    url: actor_success
