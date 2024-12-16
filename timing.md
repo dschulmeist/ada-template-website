@@ -11,13 +11,16 @@ The fall season steals the spotlight, boasting the highest number of movie relea
 <div id="movies_count_graph" style="height: 400px;"></div>
 
 Sheer quantity isn't everything. Let's dive deeper—how does the revenue stack up across seasons.
+
 <div id="revenue_graph" style="height: 400px;"></div>
 
 Let's focus on the heartbeat of the film industry: ticket sales, Box office numbers.
 <div id="box_office_graph" style="height: 400px;"></div>
 
 Now, let’s break it down even further. How does movie revenue fluctuate week by week throughout the year. I would like to call that "the Christmas peak".
+
 <div id="weekly_revenue_graph" style="height: 400px;"></div>
+
 In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.
 
 <script>
@@ -109,7 +112,6 @@ var revenue_trace = {
 
   // Create the plots with specific layouts
   Plotly.newPlot('movies_count_graph', [movies_count_trace], movies_count_layout);
-  Plotly.newPlot('avg_score_graph', [avg_scores_trace], avg_scores_layout);
   Plotly.newPlot('revenue_graph', [revenue_trace], revenue_layout);
   Plotly.newPlot('box_office_graph', [box_office_trace], box_office_layout);
   Plotly.newPlot('weekly_revenue_graph', [weekly_revenue_trace], weekly_revenue_layout);
