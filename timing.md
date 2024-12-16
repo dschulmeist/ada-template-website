@@ -19,7 +19,7 @@ Let's focus on the heartbeat of the film industry: ticket sales, Box office numb
 Now, let’s break it down even further. How does movie revenue fluctuate week by week throughout the year. I would like to call that "the Christmas peak".
 <div id="weekly_revenue_graph" style="height: 400px;"></div>
 
-<p> In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.
+<p> In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.</p>
 <script>
   // Data for each dataset
   var seasons = ['Fall', 'Spring', 'Summer','Winter'];
