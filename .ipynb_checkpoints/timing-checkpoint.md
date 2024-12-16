@@ -2,8 +2,7 @@
 
 The timing of a movie's release is like a catalyst in the formula for its success. Seasons like summer and the holidays often act as "peak reaction times," driving higher box office earnings and audience engagement. This raises the hypothesis: Do films released during these periods consistently perform better?
 
-In this cinematic experiment, we’ll analyze how seasonality—whether during the "blockbuster summer," "holiday warmth," or "off-peak chill"—affects box office performance and ratings. By isolating these variables, we aim to uncover patterns explaining how timing influences a film's success.onal effects on a film's overall success.
-
+In this cinematic experiment, we’ll analyze how seasonality—whether during the "blockbuster summer," "holiday warmth," or "off-peak chill"—affects box office performance and ratings. By isolating these variables, we aim to uncover patterns explaining how timing influences a film's success.
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
