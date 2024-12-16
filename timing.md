@@ -2,7 +2,8 @@
 
 The timing of a movie's release is like a catalyst in the formula for its success. Seasons like summer and the holidays often act as "peak reaction times," driving higher box office earnings and audience engagement. This raises the hypothesis: Do films released during these periods consistently perform better?
 
-In this cinematic experiment, we’ll analyze how seasonality—whether during the "blockbuster summer," "holiday warmth," or "off-peak chill"—affects box office performance and ratings. By isolating these variables, we aim to uncover patterns explaining how timing influences a film's success.
+In this cinematic experiment, we’ll analyze how seasonality—whether during the "blockbuster summer," "holiday warmth," or "off-peak chill"—affects box office performance and ratings. By isolating these variables, we aim to uncover patterns explaining how timing influences a film's success.onal effects on a film's overall success.
+
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
@@ -17,8 +18,8 @@ Let's focus on the heartbeat of the film industry: ticket sales, Box office numb
 
 Now, let’s break it down even further. How does movie revenue fluctuate week by week throughout the year. I would like to call that "the Christmas peak".
 <div id="weekly_revenue_graph" style="height: 400px;"></div>
+In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.
 
-<p> In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.</p>
 <script>
   // Data for each dataset
   var seasons = ['Fall', 'Spring', 'Summer','Winter'];
