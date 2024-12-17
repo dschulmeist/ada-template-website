@@ -17,7 +17,7 @@ However, lead roles generally have a larger impact on a movie’s success, as th
 
 - Supporting Actor Oscar (SAN) Nomination has weight 1.
 
-Oscar Score= [# of LAO]*5 + [# of SAO]*3 +  [# of LAN]*2+ [# of SAN]×1
+Oscar Score= [# of LAO]x5 + [# of SAO]x3 +  [# of LAN]x2+ [# of SAN]x1
 
 By applying this score in our data, we get the following top 10 most successful actors:
 
@@ -39,77 +39,81 @@ By applying this score in our data, we get the following top 10 most successful 
 
 This scatter plot shows the relationship between IMDb scores and total Oscar scores of various movies.
 
-<div id="scatter-plot"></div>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<canvas id="imdbOscarScatterPlot" width="600" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script> <!-- Add regression line plugin -->
+
 <script>
-  // Fetching data from the oscars_section.json file
-  fetch('json_data/oscars_section.json')
-    .then(response => response.text())  // Get raw text response
-    .then(text => {
-      let validData = [];
+// IMDb Scores and Oscar Scores (Example Data)
+const data = [
+    { actor: 'Meryl Streep', imdb: 8.0, oscars: 46 },
+    { actor: 'Katharine Hepburn', imdb: 7.8, oscars: 36 },
+    { actor: 'Bette Davis', imdb: 7.5, oscars: 28 },
+    { actor: 'Jack Nicholson', imdb: 7.7, oscars: 28 },
+    { actor: 'Spencer Tracy', imdb: 7.6, oscars: 24 },
+    { actor: 'Denzel Washington', imdb: 7.9, oscars: 21 },
+    { actor: 'Ingrid Bergman', imdb: 7.4, oscars: 21 },
+    { actor: 'Marlon Brando', imdb: 8.1, oscars: 21 },
+    { actor: 'Jack Lemmon', imdb: 7.5, oscars: 20 },
+    { actor: 'Paul Newman', imdb: 7.3, oscars: 20 }
+];
 
-      // Split the JSON text into individual lines (if it's a line-by-line JSON file)
-      const lines = text.split('\n');
+// Format data for Chart.js scatter plot
+const scatterData = data.map(item => ({
+    x: item.oscars,  // Oscar Score (x-axis)
+    y: item.imdb,    // IMDb Score (y-axis)
+    label: item.actor
+}));
 
-      // Loop through each line and try to parse it as JSON
-      lines.forEach(line => {
-        try {
-          // Parse the line as JSON and push to validData array
-          const item = JSON.parse(line);
-          
-          // Ensure it contains valid fields before adding it to the plot data arrays
-          if (item.imdb_score && item.total_oscar_score && item.actor_name) {
-            validData.push(item);
-          }
-        } catch (e) {
-          // Skip lines with errors
-          console.warn('Skipping invalid JSON line:', e);
+const ctx = document.getElementById('imdbOscarScatterPlot').getContext('2d');
+const scatterPlot = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'IMDb Score vs Oscar Score',
+            data: scatterData,
+            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            trendlineLinear: {  // Add regression line
+                style: "rgba(255, 99, 132, 0.6)",
+                lineStyle: "dotted",
+                width: 2
+            }
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const dataPoint = context.raw;
+                        return `${dataPoint.label}: Oscar Score = ${dataPoint.x}, IMDb Score = ${dataPoint.y}`;
+                    }
+                }
+            },
+            title: {
+                display: true,
+                text: 'Scatter Plot: IMDb Score vs Oscar Score'
+            }
+        },
+        scales: {
+            x: {
+                title: { display: true, text: 'Oscar Score' },
+                beginAtZero: false
+            },
+            y: {
+                title: { display: true, text: 'IMDb Score' },
+                beginAtZero: false,
+                suggestedMin: 7.0,
+                suggestedMax: 8.5
+            }
         }
-      });
-
-      // Initialize arrays for imdb_scores, oscar_scores, and actor names
-      let imdb_scores = [];
-      let oscar_scores = [];
-      let actor_names = [];
-
-      // Extract imdb_scores, oscar_scores, and actor names from the valid data
-      validData.forEach(item => {
-        imdb_scores.push(item.imdb_score);
-        oscar_scores.push(item.total_oscar_score);
-        actor_names.push(item.actor_name); // Add actor name
-      });
-
-      // Creating the scatter plot with Plotly
-      var trace = {
-        x: imdb_scores,
-        y: oscar_scores,
-        mode: 'markers',
-        type: 'scatter',
-        marker: { color: 'blue', symbol: 'circle' },
-        text: actor_names.map((name, index) => `${name}<br>Oscar Score: ${oscar_scores[index]}`), // Tooltip text with actor name and Oscar score
-        hoverinfo: 'text' // Show the 'text' information on hover
-      };
-
-      var layout = {
-        title: 'IMDb Score vs Oscar Score',
-        xaxis: { title: 'Average IMDb Score' },
-        yaxis: { title: 'Total Oscar Score', rangemode: 'tozero' },
-        hovermode: 'closest', // Ensure tooltip follows the closest point
-        hoverdistance: 100, // Optional: adjust the hover distance
-        showlegend: false,
-        hoverlabel: {
-          bgcolor: 'white', // Tooltip background color
-          bordercolor: 'black', // Tooltip border color
-          font: { size: 14, color: 'black' } // Adjust font size and color
-        }
-      };
-
-      // Plotting the graph in the div with id 'scatter-plot'
-      Plotly.newPlot('scatter-plot', [trace], layout);
-    })
-    .catch(error => {
-      console.error('Error loading the JSON file:', error);
-    });
+    }
+});
 </script>
 
 

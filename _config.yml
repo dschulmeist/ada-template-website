@@ -16,4 +16,4 @@ navigation:
   - title: Movie Release Timing
     url: timing
   - title: Oscars
-    url: actor_success
+    url: oscars
