@@ -1,12 +1,10 @@
 # Lights, Camera, Success: What Makes a Movie Shine at the Box Office?
 
-Welcome to the Movie Lab, where we view movies as complex chemical reactions—blending various elements that can either explode into blockbuster success or fizzle into obscurity!
+Welcome to the BlueSweater Lab, where we treat movies as complex chemical reactions—combining various elements that can either explode into blockbuster success or fizzle into obscurity! From budgets and genres to audience ratings and box office numbers, every factor plays a pivotal role in a movie’s success formula.
 
-In the Blue Sweater lab, we dive deep into the science behind cinematic hits. From budgets and genres to audience ratings and box office numbers, each ingredient plays a crucial role in a movie's formula for success. Our goal: to uncover the secret ingredients that influence a movie’s journey to the top.
+<strong>Our goal: to identify the key ingredients that contribute to a movie’s success and uncover what truly makes a film resonate with audiences.</strong>
 
-We'll break down each ingredient—ratings, actors, Oscar wins, and more—examining how they work individually and together to create the perfect cinematic "potion."
-
-By approaching movies through a data-driven lens, we aim to decode the magic behind storytelling and reveal what resonates with audiences. This knowledge could even help filmmakers craft the next cultural phenomenon!
+In this exploration, we'll examine how different elements—such as ratings, star power, Oscar wins, genre, and production country—interact and influence a movie’s journey to the top. But first, meet the team :)
 
 ## Meet Our BlueSweater Lab Members 
 
@@ -38,12 +36,9 @@ By approaching movies through a data-driven lens, we aim to decode the magic beh
     </div>
 </div>
 
-
-
-<br>
 <br>
 
-## Let’s Derive Our Ingredients...
+## Let’s get started by deriving our ingredients...
 
 The primary dataset we'll use for this analysis is the **CMU Movie Dataset**, which contains key information like:
 
@@ -68,7 +63,7 @@ With our enriched data, our master dataset now includes:
 
 However, not all columns will be used in the analysis, as we’ll focus on the most relevant factors for our success prediction model.
 
-## Addressing Key Issues with Our Dataset
+## Addressing key issues with our dataset
 
 ### 1) Duplicates
 There are 6,377 duplicates in the dataset. Initially, we considered dropping movies with the same title, but this approach could remove important variations—such as different release years or production countries. 
