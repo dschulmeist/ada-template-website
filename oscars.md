@@ -9,15 +9,14 @@ However, Best Actor and Best Actress aren’t the only possible Oscar wins; acto
 
 However, lead roles generally have a larger impact on a movie’s success, as these actors often drive the story and have more screen time.  For this reason, we are going to build an Oscar score that applies weights to different award categories, giving greater significance to lead roles and including nominations to reflect their influence. We have decided to apply the following weights:
 
-- Lead Actor Oscar Win (LAO) has weight 4. 
+### Oscar Score Formula
 
-- Supporting Actor Oscar Win (SAO) has weight 3.
+- **LAO**: *Lead Actor Oscar Win* (**5 points**)
+- **SAO**: *Supporting Actor Oscar Win* (**3 points**)
+- **LAN**: *Lead Actor Oscar Nomination* (**2 points**)
+- **SAN**: *Supporting Actor Oscar Nomination* (**1 point**)
 
-- Lead Actor Oscar Nomination (LAN) has weight 2. 
-
-- Supporting Actor Oscar (SAN) Nomination has weight 1.
-
-Oscar Score= [# of LAO]x5 + [# of SAO]x3 +  [# of LAN]x2+ [# of SAN]x1
+**Oscar Score** = **(#LAO × 5)** + **(#SAO × 3)** + **(#LAN × 2)** + **(#SAN × 1)**
 
 By applying this score in our data, we get the following top 10 most successful actors:
 
