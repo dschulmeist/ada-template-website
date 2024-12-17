@@ -1,5 +1,5 @@
 <h2>Box Office vs Average Score</h2>
-Does a higher budget imply better revenue, ratings, and overall movie success? At first glance, it seems logical—like adding more ingredients to a chemical formula to achieve a better reaction. However, as revealed in our second milestone, the relationship between financial investment and movie performance is far more complex. To untangle this, we use two tools from our statistical lab: Pearson and Spearman correlations, which allow us to examine both linear trends and rank-based patterns.
+Does a higher budget imply better revenue, ratings, and overall movie success? At first glance, it seems logical—like adding more ingredients to a chemical formula to achieve a better reaction. However, as revealed in our second milestone, the relationship between financial investment and movie performance is far more complex. To untangle this, we use two tools from our statistical lab: <i>Pearson and Spearman correlations</i>, which allow us to examine both linear trends and rank-based patterns.
 
 What do these tools measure?
 
