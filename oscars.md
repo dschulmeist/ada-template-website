@@ -33,6 +33,134 @@ By applying this score in our data, we get the following top 10 most successful 
 | Jack Lemmon        | 20          |
 | Paul Newman        | 20          |
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Oscar Scores</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        /* Table Styles */
+        table {
+            width: 70%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2a7ae2;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f9ff;
+            transform: scale(1.01);
+            transition: 0.2s ease-in-out;
+        }
+
+        td:first-child {
+            font-weight: bold;
+        }
+
+        /* Highlight the top actor row */
+        tr.top-actor {
+            background-color: #ffe082;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table {
+                width: 95%;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Oscars</h1>
+    <h2>Top 10 Most Successful Actors by Oscar Score</h2>
+
+    <table>
+        <tr>
+            <th>Actor Name</th>
+            <th>Oscar Score</th>
+        </tr>
+        <tr class="top-actor">
+            <td>Meryl Streep</td>
+            <td>46</td>
+        </tr>
+        <tr>
+            <td>Katharine Hepburn</td>
+            <td>36</td>
+        </tr>
+        <tr>
+            <td>Bette Davis</td>
+            <td>28</td>
+        </tr>
+        <tr>
+            <td>Jack Nicholson</td>
+            <td>28</td>
+        </tr>
+        <tr>
+            <td>Spencer Tracy</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>Denzel Washington</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>Ingrid Bergman</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>Marlon Brando</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>Jack Lemmon</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>Paul Newman</td>
+            <td>20</td>
+        </tr>
+    </table>
+
+</body>
+</html>
 
 # IMDb Score vs Oscar Score
 
