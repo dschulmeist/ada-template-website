@@ -8,7 +8,7 @@ We'll break down each ingredient—ratings, actors, Oscar wins, and more—exami
 
 By approaching movies through a data-driven lens, we aim to decode the magic behind storytelling and reveal what resonates with audiences. This knowledge could even help filmmakers craft the next cultural phenomenon!
 
-## Meet Our Scientists 
+## Meet Our Lab Members 
 
 <div style="display: flex; gap: 15px; justify-content: center;">
     <div style="text-align: center;">
