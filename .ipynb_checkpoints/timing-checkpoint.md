@@ -54,8 +54,6 @@ var movies_count_trace = {
     y: movies_count,
     type: 'bar',
     marker: { color: '#8F00FF' },
-    text: movies_count,  // Add the numbers as labels
-    textposition: 'auto',  // Position the labels automatically on the bars
 };
 
 
