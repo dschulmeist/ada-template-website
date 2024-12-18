@@ -17,3 +17,5 @@ navigation:
     url: timing
   - title: Oscars
     url: oscars
+  - title: Datastory
+    url: datastory
