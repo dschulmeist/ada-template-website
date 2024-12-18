@@ -28,7 +28,7 @@ In this exploration, we'll examine how different elements—such as ratings, sta
         <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
     </div>
     <div style="text-align: center;">
-        <img src="scientists_pics/ali.webp" alt="Ali" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/ali.png" alt="Ali" style="width: 160px; height: 160px;"/>
         <p style="margin-bottom: 5px;">Ali</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in EEE</p>
     </div>
