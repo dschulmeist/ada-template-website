@@ -1,7 +1,7 @@
 ---
 layout: full
 ---
-# Lights, Camera, Success: What Makes a Movie Shine at the Box Office?
+<!-- # Lights, Camera, Success: What Makes a Movie Shine at the Box Office? -->
 
 Welcome to the BlueSweater Lab, where we treat movies as complex chemical reactions—combining various elements that can either explode into blockbuster success or fizzle into obscurity! From budgets and genres to audience ratings and box office numbers, every factor plays a pivotal role in a movie’s success formula.
 
