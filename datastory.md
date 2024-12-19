@@ -1,7 +1,6 @@
 ---
 layout: full
 ---
-<!-- # Lights, Camera, Success: What Makes a Movie Shine at the Box Office? -->
 
 Welcome to the BlueSweater Lab, where we treat movies as complex chemical reactions—combining various elements that can either explode into blockbuster success or fizzle into obscurity! From budgets and genres to audience ratings and box office numbers, every factor plays a pivotal role in a movie’s success formula.
 
@@ -158,13 +157,6 @@ Does a high budget truly guarantee commercial success, or are other factors more
 Timing can make or break a movie’s success, but when is the optimal moment to release a film? This section explores the influence of seasonal and holiday periods on audience reception and box office revenue. By segmenting the year into distinct timeframes, we will analyze how factors such as genre, sequel status, and prevailing cultural moods align with release strategies. This investigation aims to identify patterns in audience behavior and uncover strategies that filmmakers and studios can use to maximize both reception and financial performance. Understanding the timing sweet spot could provide valuable insights into the art and science of film release planning.
 
 
-# Sections
-1. OSCARS
-2. BUDGET
-3. TIMING
-4. COUNTRY 
-5. TROPES 
-6. ACTOR SUCCESS 
 
 <!-- OSCARS -->
 # Oscars
@@ -289,7 +281,7 @@ It is thus  useful to conduct further experiments and explore additional factors
 Type in the name of an actor in the search bar below to see their IMDb score, Oscar score, and number of movies they have appeared in.
 
 {% raw %}
-<h1>Actor Search</h1>
+## Actor Search
 <div id="search-container">
     <input type="text" id="actor-search" placeholder="Enter an actor's name..." style="width: 300px; padding: 10px;">
 </div>
