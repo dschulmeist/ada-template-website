@@ -8,29 +8,29 @@ In this exploration, we'll examine how different elements—such as ratings, sta
 
 ## Meet Our BlueSweater Lab Members 
 
-<div style="display: flex; gap: 15px; justify-content: center;">
-    <div style="text-align: center;">
-        <img src="scientists_pics/ivan.webp" alt="Ivan" style="width: 160px; height: auto;"/>
+<div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+    <div style="text-align: center; min-width: 160px; flex: 1 1 160px; margin-bottom: 15px;">
+        <img src="scientists_pics/ivan.png" alt="Ivan" style="width: 160px; height: auto; max-width: 100%;"/>
         <p style="margin-bottom: 5px;">Ivan</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in MTE</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/david.webp" alt="David" style="width: 160px; height: auto;"/>
+    <div style="text-align: center; min-width: 160px; flex: 1 1 160px; margin-bottom: 15px;">
+        <img src="scientists_pics/david.jpg" alt="David" style="width: 160px; height: auto; max-width: 100%;"/>
         <p style="margin-bottom: 5px;">David</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/adam.webp" alt="Adam" style="width: 160px; height: auto;"/>
+    <div style="text-align: center; min-width: 160px; flex: 1 1 160px; margin-bottom: 15px;">
+        <img src="scientists_pics/adam.jpg" alt="Adam" style="width: 160px; height: auto; max-width: 100%;"/>
         <p style="margin-bottom: 5px;">Adam</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/ali.webp" alt="Ali" style="width: 160px; height: auto;"/>
+    <div style="text-align: center; min-width: 160px; flex: 1 1 160px; margin-bottom: 15px;">
+        <img src="scientists_pics/ali.png" alt="Ali" style="width: 160px; height: auto; max-width: 100%;"/>
         <p style="margin-bottom: 5px;">Ali</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in EEE</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/dana.webp" alt="Dana" style="width: 160px; height: auto;"/>
+    <div style="text-align: center; min-width: 160px; flex: 1 1 160px; margin-bottom: 15px;">
+        <img src="scientists_pics/dana.png" alt="Dana" style="width: 160px; height: auto; max-width: 100%;"/>
         <p style="margin-bottom: 5px;">Dana</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in NX</p>
     </div>
