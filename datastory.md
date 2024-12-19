@@ -178,7 +178,7 @@ However, Best Actor and Best Actress aren’t the only possible Oscar wins; acto
 
 However, lead roles generally have a larger impact on a movie’s success, as these actors often drive the story and have more screen time.  For this reason, we are going to build an Oscar score that applies weights to different award categories, giving greater significance to lead roles and including nominations to reflect their influence. We have decided to apply the following weights:
 
-### Oscar Score Formula
+## Oscar Score Formula
 
 - **LAO**: *Lead Actor Oscar Win* (**5 points**)
 - **SAO**: *Supporting Actor Oscar Win* (**3 points**)
@@ -203,7 +203,7 @@ By applying this score in our data, we get the following top 10 most successful 
 | Paul Newman        | 20          |
 
 
-# IMDb Score vs Oscar Score
+## IMDb Score vs Oscar Score
 
 This scatter plot shows the relationship between IMDb scores and total Oscar scores of various movies.
 
@@ -327,7 +327,9 @@ Happy searching and we wish you alot of success for your movie, after knowing th
 
 
 <!-- BUDGET -->
-<h2>Box Office vs Average Score</h2>
+# Money: budget, revenue, scores...
+
+##  Box Office vs Average Score
 Does a higher budget imply better revenue, ratings, and overall movie success? At first glance, it seems logical—like adding more ingredients to a chemical formula to achieve a better reaction. However, as revealed in our second milestone, the relationship between financial investment and movie performance is far more complex. To untangle this, we use two tools from our statistical lab: <i>Pearson and Spearman correlations</i>, which allow us to examine both linear trends and rank-based patterns.
 
 What do these tools measure?
@@ -339,7 +341,7 @@ What do these tools measure?
 By testing both, we uncover not just visible trends but hidden relationships, helping us determine whether budget truly acts as a key catalyst for a movie’s success. More speciically, if Spearman is higher than Pearson, it indicates a stronger rank-based relationship, suggesting subtle, non-linear patterns. Conversely, if Pearson is higher, the variables exhibit a clearer linear trend.
 
 
-<h3>Budget vs Revenue</h3>
+## Budget vs Revenue 
 
 - Pearson Correlation: 0.769
 - Spearman Correlation: 0.71
@@ -348,21 +350,21 @@ The results are clear! Budget and revenue show a strong positive relationship, m
 
 <strong>But here’s the catch:</strong> revenue isn’t profit. Just as an expensive experiment might fail to yield a breakthrough, movies with massive budgets can still flop if audience reception or competition acts as a limiting factor.
 
-<h3>Budget vs Average Movie Score</h3>
+## Budget vs Average Movie Score 
 
 - Pearson Correlation: 0.097
 - Spearman Correlation: 0.15
 
 The weak correlations suggest that budget has minimal influence on movie quality, much like adding more expensive compounds without improving the end result. A big budget might produce spectacle, but it doesn’t necessarily generate a masterpiece. It’s like a flashy formula that works but doesn’t impress the critics—expensive, but ineffective at winning accolades. 
 
-<h3>Revenue vs Average Movie Score</h3>
+## Revenue vs Average Movie Score
 
 - Pearson Correlation: 0.112
 - Spearman Correlation: 0.21
 
 Here, we observe a faint positive relationship—like a slight chemical reaction occurring under ideal conditions. Successful movies in terms of revenue sometimes rank higher in scores, but the relationship is weak. This suggests that external factors, such as hype, franchises, or marketing, often drive revenue more than the movie’s artistic or critical merit.
 
-<h3>Box Office vs Average Movie Score</h3>
+## Box Office vs Average Movie Score
 
 - Pearson Correlation: 0.183
 - Spearman Correlation: 0.12 
@@ -1045,149 +1047,5 @@ Before we conclude the section, it is worth noting that the tropes we selected a
 </script>
 
 Now let us dive into analysing which TV trope maximizes a movie success. 
-
-
-
-<!-- ACTOR SUCCESS -->
-# Actor Success: What Defines a Successful Acting Career?
-
-To understand what makes an actor’s career successful, we combine multiple datasets:
-- **Oscar Awards**: Recognizing industry acclaim.
-- **IMDB Scores**: Reflecting audience ratings.
-- **Additional Actor Data**: Providing biographical details.
-
-The analysis reveals which actors stand out, how metrics correlate, and whether gender or country influences success.
-
----
-
-## What is Success?
-
-Success is subjective, but for this analysis, we define it through two measurable criteria:
-1. **Oscar Score**: 1 point per nomination, 2 points per win.
-2. **IMDB Score**: Average audience ratings for an actor’s movies.
-
-These are combined into a **Final Score**:
-
-\[ \text{Final Score} = \text{Oscar Score} + \text{Average IMDB Score} \]
-
-By combining industry recognition and public ratings, we create a balanced metric of success.
-
----
-
-## Distribution of Actor Success
-
-The majority of actors have **Final Scores** between **8 and 10**, with a few exceptional outliers.
-
-<div id="distributionFinalScore" style="width:100%; max-width:700px; height:500px;"></div>
-<script>
-  var data = [{ x: [8, 9, 10, 22], y: [50, 80, 40, 1], type: 'bar' }];
-  Plotly.newPlot('distributionFinalScore', data, {title: 'Distribution of Final Scores'});
-</script>
-
-**Insight**: A small number of actors dominate the higher end, reflecting consistent excellence.
-
----
-
-## Top Actors by Final Score
-
-Let’s highlight the **top 20 actors** based on the Final Score:
-
-<div id="topActorsFinalScore" style="width:100%; max-width:700px; height:500px;"></div>
-<script>
-  var data = [
-    {x: ['Jack Nicholson', 'Marlon Brando', 'Paul Newman', 'Meryl Streep'],
-     y: [22.1, 17.5, 17.2, 16.9],
-     type: 'bar', text: ['22.1', '17.5', '17.2', '16.9'], textposition: 'auto'}
-  ];
-  Plotly.newPlot('topActorsFinalScore', data, {title: 'Top Actors by Final Score'});
-</script>
-
-**Jack Nicholson** leads with a Final Score of **22.1**, followed by **Marlon Brando** and **Paul Newman**.
-
----
-
-## Relationship Between Oscar Score and IMDB Score
-
-How do Oscars (industry acclaim) relate to IMDB scores (audience acclaim)?
-
-<div id="oscarVsIMDB" style="width:100%; max-width:700px; height:500px;"></div>
-<script>
-  var data = [
-    {x: [2, 10, 15], y: [7.0, 7.5, 6.8], mode: 'markers', marker: {size: 10, color: ['blue', 'red', 'blue']}}
-  ];
-  Plotly.newPlot('oscarVsIMDB', data, {title: 'Oscar Score vs IMDB Score'});
-</script>
-
-**Observation**: There is a weak positive correlation. Higher IMDB scores don’t guarantee Oscars, and vice versa.
-
----
-
-## Gender Representation
-
-Are successful actors evenly distributed across genders?
-
-<div id="genderDistribution" style="width:100%; max-width:500px; height:500px;"></div>
-<script>
-  var data = [{labels: ['Male', 'Female'], values: [55, 45], type: 'pie'}];
-  Plotly.newPlot('genderDistribution', data, {title: 'Gender Distribution'});
-</script>
-
-**Result**: Success appears to be almost evenly distributed.
-
----
-
-## Top Countries Producing Successful Actors
-
-Where are the most successful actors born?
-
-<div id="topCountries" style="width:100%; max-width:700px; height:500px;"></div>
-<script>
-  var data = [{x: ['USA', 'UK', 'Canada', 'France'], y: [80, 20, 10, 10], type: 'bar'}];
-  Plotly.newPlot('topCountries', data, {title: 'Top Countries for Successful Actors'});
-</script>
-
-**Finding**: The **USA** dominates, with the **UK** and **Canada** following.
-
----
-
-## Final Score vs Number of Movies
-
-Does appearing in more movies lead to greater success?
-
-<div id="moviesVsFinalScore" style="width:100%; max-width:700px; height:500px;"></div>
-<script>
-  var data = [{x: [5, 10, 20, 30], y: [8, 12, 15, 10], mode: 'lines+markers'}];
-  Plotly.newPlot('moviesVsFinalScore', data, {title: 'Number of Movies vs Final Score'});
-</script>
-
-**Insight**: While there’s no strong correlation, male actors show a slight upward trend.
-
----
-
-## Key Insights
-
-1. **Jack Nicholson** dominates as the most successful actor.
-2. **IMDB ratings** and **Oscar wins** measure different aspects of success.
-3. Success is **gender balanced**, challenging assumptions about industry bias.
-4. **USA** remains the largest producer of successful actors.
-
----
-
-## Data Quality Notes
-
-1. Some **birth year anomalies** exist (e.g., Jack Nicholson incorrectly listed as born in 1996).
-2. The data does not account for **actors’ career length** or other subjective success metrics.
-
----
-
-## Conclusion
-
-Success in acting, defined by Oscars and IMDB scores, reveals both expected and surprising trends:
-- **Industry recognition** and **audience acclaim** often diverge.
-- **Geography**, **gender**, and **movie volume** play nuanced roles.
-
-This analysis provides a robust starting point for understanding success in Hollywood and beyond. 🎬
-
-
 
 
