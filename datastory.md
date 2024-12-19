@@ -222,8 +222,8 @@ const imdbData = [{"actor_name":"Meryl Streep","total_oscar_score":46,"imdb_scor
 const scatterData = imdbData
   .filter(item => item.imdb_score !== null && item.imdb_score !== undefined)
   .map(item => ({
-    x: item.total_oscar_score, 
-    y: item.imdb_score,   
+    x: item.imdb_score,  // Swap x and y values
+    y: item.total_oscar_score,  // Swap x and y values
     label: item.actor_name
   }));
 
@@ -237,12 +237,7 @@ const scatterPlot = new Chart(ctx, {
             backgroundColor: 'rgba(75, 192, 192, 0.7)',
             borderColor: 'rgba(75, 192, 192, 1)',
             pointRadius: 6,
-            pointHoverRadius: 8,
-            trendlineLinear: {  
-                style: "rgba(255, 99, 132, 0.6)",
-                lineStyle: "dotted",
-                width: 2
-            }
+            pointHoverRadius: 8, 
         }]
     },
     options: {
@@ -252,22 +247,25 @@ const scatterPlot = new Chart(ctx, {
                 callbacks: {
                     label: function(context) {
                         const dataPoint = context.raw;
-                        return `${dataPoint.label}: Oscar Score = ${dataPoint.x}, IMDb Score = ${dataPoint.y}`;
+                        return `${dataPoint.label}: IMDb Score = ${dataPoint.x}, Oscar Score = ${dataPoint.y}`;
                     }
                 }
             },
             title: {
                 display: true,
                 text: 'Scatter Plot: IMDb Score vs Oscar Score'
+            },
+            legend: {
+                display: false // Hide the legend
             }
         },
         scales: {
             x: {
-                title: { display: true, text: 'Oscar Score' },
+                title: { display: true, text: 'IMDb Score' },  // Change title to IMDb Score
                 beginAtZero: false
             },
             y: {
-                title: { display: true, text: 'IMDb Score' },
+                title: { display: true, text: 'Oscar Score' },  // Change title to Oscar Score
                 beginAtZero: false,
                 suggestedMin: 30, 
                 suggestedMax: 100 
@@ -275,6 +273,8 @@ const scatterPlot = new Chart(ctx, {
         }
     }
 });
+
+
 </script>
 
 
