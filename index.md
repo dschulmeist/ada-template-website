@@ -322,7 +322,7 @@ document.getElementById('actor-search').addEventListener('input', function() {
 Did you find who you were looking for? If not, try searching for another actor! 🎬
 
 
-## IMDb Score vs Oscar Score
+<h2> IMDb Score vs Oscar Score</h2>
 
 Now that we have calculated the oscar score, let us see if it has a correlation with IMDb movie ratings:
 
@@ -487,7 +487,7 @@ Success, much like in the lab, is not defined by a single variable. A blockbuste
 
 
 <!-- TIMING -->
-# Release Date Timing
+<h1> Release Date Timing ⏰ </h1>
 
 The timing of a movie's release plays a crucial role in its success. Do films released during specific periods, such as summer or the winter holidays, tend to perform better? Let's explore the data below!
 
@@ -635,9 +635,9 @@ var audience_trace = {
   Plotly.newPlot('audience_timing', [audience_trace], aud_time_layout);
 
 </script>
-
+<br>
 <!-- COUNTRY -->
-# Production Country
+<h1> Production Country 🌏</h1>
 
 Know that we know that budget, oscar, and movie timing arent'the only factors that contribute to a movie's success, let us take a look at the global landscape of the movie industry. 
 
@@ -997,7 +997,7 @@ Thus, from this, we can see that successful movies typically emerge from countri
 
 
 <!-- TROPES -->
-<h1>TV Tropes</h1>
+<h1>TV Tropes 📺</h1>
 To maximize your chances of creating a successful movie, it's worth looking at what kind of characters should appear in a movie. But how can one compactly describe a character? There is so many options! Thankfully, the dataset **TV tropes** provides just what we need. 
 
 <h2> What is success?</h2>
@@ -1301,8 +1301,8 @@ Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
 
 </script>
 <br>
-<h1> Regression Analysis </h1>
+<h1> Regression Analysis ✏️ </h1>
 
 <br>
 
-<h1>Data Story Conclusion</h1>
+<h1>Data Story Conclusion 🎥 🧪🔬💊 </h1>
