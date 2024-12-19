@@ -1077,10 +1077,16 @@ Finally, let us look at the top 5 and bottom 5 tropes based on the Metacritic Sc
   Plotly.newPlot('allTropesMetacriticRating', data, layout);
 </script>
 
+## Which trope is the best?
+Now that we have visualized which tropes score best in each category, let us propose which trope could be the best predictor for a successful movie! Firstly, we make an observation that there is no overlap between the top 5 tropes ranked by Box Office revenue and the IMDb top 5. Similarly, no overlap between Box Office top 5 and Metacritic top 5. However, the Metacritic and IMDb top 5 share multiple tropes, namely: *Stupid Crooks*, *Doormat*, *Morally bankrupt banker*. Notice that all of these characters show silly or negative traits. It seems there is something people enjoy about these characteristics, perhaps they make us laugh. 
+
+However, the Box Office top 5 include tropes such as: *Gadgeteer Genius* and *Child Prodigy*. These only ranked average in IMDb and Metacritic, but performed exceptionally well in the Box Office. Is it envy which makes us admire these characters, but only silently without ranking them well? Or are they not ranked well simply because it is a cliché? We would need a more thorough analysis to uncover the reasons, but the trend seems to point this way.
+
+Finally, we conclude that the choice of the tropes ultimately comes down to what the movie is trying to optimize for. If it is Box Office revenue - make a movie about a genius! If audience or critics reception is the goal - a silly character which provides a good laugh could be a better choice.
 
 
 ## Remarks about the data used
-Before we conclude the section, it is worth noting that the tropes we selected are not the best representation of the ground truth. They were only selected from around 500 successful movies and the corresponding characters were disproportionally represented by mostly men. The distribution can be clearly visible in the pie chart.
+To remain objective, it is worth noting that the tropes we had available are not the best representation of the ground truth. They were only selected from around 500 successful movies and the corresponding characters were disproportionally represented by mostly men. The distribution can be clearly visible in the pie chart.
 
 <div id="genderDistributionPie" style="width:100%; max-width:500px; height:500px;"></div>
 
