@@ -1110,7 +1110,3 @@ Before we conclude the section, it is worth noting that the tropes we selected a
 
   Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
 </script>
-
-Now let us dive into analysing which TV trope maximizes a movie success. 
-
-
