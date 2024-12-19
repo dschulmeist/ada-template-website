@@ -615,7 +615,7 @@ var audience_trace = {
   };
 
   var weekly_revenue_layout = {
-    title: 'Weekly Movie Revenue per week through out the year',
+    title: 'Weekly Movie Revenue',
     xaxis: { title: 'Week of the Year' },
     yaxis: { title: 'Average Revenue (in USD)' },
   };
@@ -639,7 +639,7 @@ var audience_trace = {
 <!-- COUNTRY -->
 # Production Country
 
-Know that we know that budget and [insert previous section names] arent'the only factors that contribute to a movie's success, let us take a look at the global landscape of the movie industry. 
+Know that we know that budget, oscar, and movie timing arent'the only factors that contribute to a movie's success, let us take a look at the global landscape of the movie industry. 
 
 <canvas id="countryBarChart" width="400" height="200"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -677,6 +677,10 @@ const countryBarChart = new Chart(ctxCountry, {
             },
             tooltip: {
                 enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Top 20 Countries by Number of Movies Produced'
             }
         },
         scales: {
@@ -689,7 +693,7 @@ const countryBarChart = new Chart(ctxCountry, {
             y: {
                 title: {
                     display: true,
-                    text: 'Value'
+                    text: 'Number of Movies'
                 },
                 beginAtZero: true
             }
@@ -698,13 +702,14 @@ const countryBarChart = new Chart(ctxCountry, {
 });
 </script>
 
+
 These results can be explained by the unique strengths and historical factors that shape each country’s film industry, almost like the specific conditions in a lab experiment that determine the outcome:
 
-- United States: Hollywood is the powerhouse of global cinema, driven by its extensive infrastructure, immense funding, and deep ties to international markets. Think of Hollywood as a well-oiled machine that churns out films on a massive scale, ensuring widespread distribution and constant success across the globe. Like a carefully calibrated experiment, Hollywood’s reach and accessibility make U.S. films a dominant force in international box offices.
+- Hollywood is the powerhouse of global cinema, driven by its extensive infrastructure, immense funding, and deep ties to international markets. Thus, the U.S.A. films a dominant force in international box offices.
 
-- India: Bollywood, the world’s largest film industry by output, thrives on the vast, culturally diverse audience of India. With a focus on genres like musicals and romantic dramas, Bollywood taps into the unique tastes of its domestic market, much like a perfect blend of ingredients that produces a high volume of films with deep local resonance. The sheer demand from its massive population fuels this powerhouse, making Bollywood a global contender.
+- Bollywood thrives on the vast, culturally diverse audience of India. With a focus on genres like musicals and romantic dramas, Bollywood taps into the unique tastes of its domestic market. The sheer demand from its massive population fuels this powerhouse, making Bollywood a global contender.
 
-- United Kingdom, France, and Italy: These countries have long-standing film traditions, backed by government support and policies that protect and promote local cinema. France, for example, with its historic roots in the early days of cinema, provides an environment where films are carefully nurtured to achieve both high quality and international recognition. This careful, supported approach allows for a strong domestic output that often garners critical acclaim on the global stage.
+- United Kingdom, France, and Italy: These countries have long-standing film traditions, backed by government support and policies that protect and promote local cinema. France, for example, with its historic roots in the early days of cinema, provides an environment where films are carefully nurtured to achieve both high quality and international recognition. 
 
 
 <canvas id="boxOfficeBarChart" width="400" height="200"></canvas>
@@ -746,6 +751,10 @@ const boxOfficeBarChart = new Chart(ctx2, {
             },
             tooltip: {
                 enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Top 20 Countries by Revenue'
             }
         },
         scales: {
@@ -767,7 +776,7 @@ const boxOfficeBarChart = new Chart(ctx2, {
 });
 </script>
 
-Not every experiment can yield perfect results. It’s important to note that the CMU Movies dataset contains a significant amount of missing data, particularly in the box office revenue field. These gaps in the data could influence the outcomes of our analysis, as the absence of information from certain movies or countries may skew the overall revenue figures. As a result, we observe a trend that largely reflects the movie count by country, with the USA and UK occupying the top spots. However, a key anomaly emerges in the form of Bollywood’s financial contribution, which is noticeably absent. This is due to the dataset’s lack of box office revenue data for many Indian films, creating a gap in the analysis that affects our global picture of film industry performance.
+Alas not every experiment can yield perfect results. It’s important to note that the CMU Movies dataset contains a significant amount of missing data, particularly in the box office revenue field.  As a result, we observe a trend that largely reflects the movie count by country, with the USA and UK occupying the top spots. However, a key anomaly emerges in the form of Bollywood’s financial contribution, which is noticeably absent. 
 
 
 <canvas id="languageBarChart" width="400" height="200"></canvas>
@@ -806,6 +815,10 @@ const languageBarChart = new Chart(ctx3, {
             },
             tooltip: {
                 enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Top 20 Languages by Number of Movies'
             }
         },
         scales: {
@@ -828,7 +841,7 @@ const languageBarChart = new Chart(ctx3, {
 </script>
 
 
-English takes a commanding lead in this dataset for two primary reasons. First, American films make up the largest portion of the dataset, which naturally skews the language distribution toward English. Hollywood’s global influence, with its high output of internationally distributed films, contributes significantly to this dominance.
+English takes a commanding lead in this dataset for two primary reasons. First, American films make up the largest portion of the dataset, which naturally skews the language distribution toward English. 
 
 Second, English is widely recognized as the international language, spoken by large portions of the global population. This global reach amplifies the presence of English-language films, especially in international markets. Similarly, languages like French, Spanish, and Hindi also rank highly due to their widespread use and cultural significance. These languages are not only spoken by millions but also have a strong presence in global media, which boosts their films' potential for success both locally and abroad.
 
@@ -867,6 +880,10 @@ const genreBarChart = new Chart(ctx4, {
             },
             tooltip: {
                 enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Top 20 Genres by Number of Movies'
             }
         },
         scales: {
@@ -976,11 +993,11 @@ Both World Cinema and Romance films make their mark, underscoring the global hun
 
 Thus, from this, we can see that successful movies typically emerge from countries with well-established film industries, such as the United States, India, and France, where the infrastructure and global reach act as catalysts for success. These films are often in widely spoken languages, particularly English, and belong to universally popular genres like drama, comedy, and romance, which serve as the key ingredients for broad audience appeal.
 
-
+<br>
 
 
 <!-- TROPES -->
-# TV Tropes
+<h1>TV Tropes</h1>
 To maximize your chances of creating a successful movie, it's worth looking at what kind of characters should appear in a movie. But how can one compactly describe a character? There is so many options! Thankfully, the dataset **TV tropes** provides just what we need. Now we should be ready to determine whether a movie with *absent minded professor* or an *arrogant kungfu guy* is more likely to succeed.
 
 ## What is success?
