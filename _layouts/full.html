@@ -22,21 +22,33 @@ layout: full
         color: #333;
       }
       .banner {
-        background: #2799f7;
-        color: white;
-        text-align: center;
-        padding: 60px 20px;
-        margin-bottom: 30px;
-      }
-      .banner h1 {
-        font-size: 3rem;
-        margin: 0;
-        color: #fff;
-      }
-      .banner p {
-        font-size: 1.2rem;
-        margin-top: 10px;
-      }
+  background: linear-gradient(135deg, #004080, #0088cc, #4da6ff, #99c2ff, #0088cc);
+  background-size: 400% 400%;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  margin-bottom: 30px;
+  animation: gradientAnimation 8s ease infinite;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.banner h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Metallic text effect */
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
       .wrapper {
         max-width: 900px;
         margin: 0 auto;
