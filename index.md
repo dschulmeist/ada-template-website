@@ -998,16 +998,16 @@ Thus, from this, we can see that successful movies typically emerge from countri
 
 <!-- TROPES -->
 <h1>TV Tropes</h1>
-To maximize your chances of creating a successful movie, it's worth looking at what kind of characters should appear in a movie. But how can one compactly describe a character? There is so many options! Thankfully, the dataset **TV tropes** provides just what we need. Now we should be ready to determine whether a movie with *absent minded professor* or an *arrogant kungfu guy* is more likely to succeed.
+To maximize your chances of creating a successful movie, it's worth looking at what kind of characters should appear in a movie. But how can one compactly describe a character? There is so many options! Thankfully, the dataset **TV tropes** provides just what we need. 
 
-## What is success?
+<h2> What is success?</h2>
 Before performing the analysis, we must establish what the ideal success metric is. You might want to aim for a movie which makes a lot of money or a movie which is rated well by the viewers, or perhaps a movie well rated by the critics? Ideally all at the same time, but we need to see if there is an overlap first. Therefore, our chosen success metrics are:
 
 1. Box Office Revenue
 2. IMDb Rating 
 3. Metacritic Score
 
-## Box Office Revenue Perspective
+<h2> Box Office Revenue Perspective</h2>
 Since the TV tropes dataset contains a mapping from each trope cluster to a set of characters, we can look at the Box Office Revenue of the corresponding movie and identify the ranking of the tropes.
 
 The below plot demonstrates the average Box Office Revenue of each trope
@@ -1027,61 +1027,67 @@ The below plot demonstrates the average Box Office Revenue of each trope
   var yData = top5yData.concat(bottom5yData);
 
   // Create the plot
-  var data = [
-    {
-      x: xData,
-      y: yData,
-      type: 'bar',
-      textposition: 'none',  // Remove text on bars
-      marker: {
-        color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
-        line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      },
-      showlegend: false
+var data = [
+  {
+    x: xData,
+    y: yData,
+    type: 'bar',
+    textposition: 'none',  // Remove text on bars
+    marker: {
+      color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
+      line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
     },
-    // Dummy trace for the top 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(55, 128, 191, 0.7)' },
-      name: 'Top 5' // Legend label
-    },
-    // Dummy trace for the bottom 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(219, 64, 82, 0.7)' },
-      name: 'Bottom 5' // Legend label
-    }
-  ];
+    showlegend: false
+  },
+  // Dummy trace for the top 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(55, 128, 191, 0.7)' },
+    name: 'Top 5' // Legend label
+  },
+  // Dummy trace for the bottom 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(219, 64, 82, 0.7)' },
+    name: 'Bottom 5' // Legend label
+  }
+];
 
-  var layout = {
-    title: 'Total Box Office Revenue per Trope (Top 5 vs Bottom 5)',
-    xaxis: {
-      title: 'Trope',
-      tickangle: -45
-    },
-    yaxis: {
-      title: 'Box Office Revenue',
-      tickformat: '$.3s'
-    },
-    margin: {
-      b: 150 // Increase bottom margin to give more space for x-axis labels
-    },
-    template: 'plotly_white',
-    legend: { 
-      orientation: 'v', 
-      x: 1, 
-      y: 1, 
-      xanchor: 'right', 
-      yanchor: 'top' 
-    } 
-  };
+var layout = {
+  title: 'Total Box Office Revenue per Trope (Top 5 vs Bottom 5)',
+  xaxis: {
+    title: 'Trope',
+    tickangle: -45
+  },
+  yaxis: {
+    title: 'Box Office Revenue',
+    tickformat: '$.3s'
+  },
+  margin: {
+    b: 150, // Increase bottom margin to give more space for x-axis labels
+    l: 80,  // Increase left margin to give space for y-axis label
+    t: 80,  // Add some space at the top
+    r: 50   // Add space on the right for better alignment
+  },
+  width: 900,  // Set the width of the plot
+  height: 500, // Set the height of the plot
+  template: 'plotly_white',
+  legend: { 
+    orientation: 'v', 
+    x: 1, 
+    y: 1, 
+    xanchor: 'right', 
+    yanchor: 'top' 
+  } 
+};
 
-  // Render the plot
-  Plotly.newPlot('allTropesBoxOfficeRevenuePlot', data, layout);
+// Render the plot
+Plotly.newPlot('allTropesBoxOfficeRevenuePlot', data, layout);
+
 </script>
 
 
@@ -1104,64 +1110,70 @@ Similarly to the Box Office Revenue, let us look at the top 5 and bottom 5 trope
   var yData = top5yData.concat(bottom5yData)
 
   // Create the plot
-  var data = [
-    {
-      x: xData,
-      y: yData.map(entry => (entry).toFixed(2)),
-      type: 'bar',
-      textposition: 'auto', // Keep the text position on the bars
-      marker: {
-        color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
-        line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      },
-      showlegend: false
+var data = [
+  {
+    x: xData,
+    y: yData.map(entry => (entry).toFixed(2)),
+    type: 'bar',
+    textposition: 'auto', // Keep the text position on the bars
+    marker: {
+      color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
+      line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
     },
-    // Dummy trace for the top 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(55, 128, 191, 0.7)' },
-      name: 'Top 5' // Legend label
-    },
-    // Dummy trace for the bottom 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(219, 64, 82, 0.7)' },
-      name: 'Bottom 5' // Legend label
-    }
-  ];
+    showlegend: false,
+  },
+  // Dummy trace for the top 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(55, 128, 191, 0.7)' },
+    name: 'Top 5' // Legend label
+  },
+  // Dummy trace for the bottom 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(219, 64, 82, 0.7)' },
+    name: 'Bottom 5' // Legend label
+  }
+];
 
-  var layout = {
-    title: 'IMDb Rating (Top 5 vs Bottom 5)',
-    xaxis: {
-      title: 'Trope',
-      tickangle: -45
-    },
-    yaxis: {
-      title: 'IMDb Rating',
-    },
-    margin: {
-      b: 150 // Increase bottom margin to give more space for x-axis labels
-    },
-    template: 'plotly_white',
-    legend: { 
-      orientation: 'v', 
-      x: 1, 
-      y: 1, 
-      xanchor: 'right', 
-      yanchor: 'top' 
-    } 
-  };
+var layout = {
+  title: 'IMDb Rating (Top 5 vs Bottom 5)',
+  xaxis: {
+    title: 'Trope',
+    tickangle: -45
+  },
+  yaxis: {
+    title: 'IMDb Rating',
+  },
+  margin: {
+    b: 150,  // Increase bottom margin to give more space for x-axis labels
+    l: 80,   // Increase left margin for y-axis label space
+    t: 80,   // Add space at the top for better title placement
+    r: 50    // Add space on the right for alignment
+  },
+  width: 900,   // Set the width of the plot
+  height: 500,  // Set the height of the plot
+  template: 'plotly_white',
+  legend: { 
+    orientation: 'v', 
+    x: 1, 
+    y: 1, 
+    xanchor: 'right', 
+    yanchor: 'top' 
+  }
+};
 
-  // Render the plot
-  Plotly.newPlot('allTropesIMDbRating', data, layout);
+// Render the plot
+Plotly.newPlot('allTropesIMDbRating', data, layout);
+
 </script>
 
 
-## Metacritic Score Perspective
+<h2> Metacritic Score Perspective</h2>
 Finally, let us look at the top 5 and bottom 5 tropes based on the Metacritic Score!
 
 <div id="allTropesMetacriticRating" style="width:100%; max-width:700px; height:500px;"></div>
@@ -1178,60 +1190,66 @@ Finally, let us look at the top 5 and bottom 5 tropes based on the Metacritic Sc
   var yData = top5yData.concat(bottom5yData)
 
   // Create the plot
-  var data = [
-    {
-      x: xData,
-      y: yData.map(entry => (entry).toFixed(2)),
-      type: 'bar',
-      textposition: 'auto', // Keep the text position on the bars
-      marker: {
-        color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
-        line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      },
-      showlegend: false
+var data = [
+  {
+    x: xData,
+    y: yData.map(entry => (entry).toFixed(2)),
+    type: 'bar',
+    textposition: 'auto', // Keep the text position on the bars
+    marker: {
+      color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
+      line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
     },
-    // Dummy trace for the top 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(55, 128, 191, 0.7)' },
-      name: 'Top 5' // Legend label
-    },
-    // Dummy trace for the bottom 5 legend
-    {
-      x: [null], // No data points
-      y: [null],
-      type: 'bar',
-      marker: { color: 'rgba(219, 64, 82, 0.7)' },
-      name: 'Bottom 5' // Legend label
-    }
-  ];
+    showlegend: false
+  },
+  // Dummy trace for the top 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(55, 128, 191, 0.7)' },
+    name: 'Top 5' // Legend label
+  },
+  // Dummy trace for the bottom 5 legend
+  {
+    x: [null], // No data points
+    y: [null],
+    type: 'bar',
+    marker: { color: 'rgba(219, 64, 82, 0.7)' },
+    name: 'Bottom 5' // Legend label
+  }
+];
 
-  var layout = {
-    title: 'Metacritic Score (Top 5 vs Bottom 5)',
-    xaxis: {
-      title: 'Trope',
-      tickangle: -45
-    },
-    yaxis: {
-      title: 'Metacritic Score',
-    },
-    margin: {
-      b: 150 // Increase bottom margin to give more space for x-axis labels
-    },
-    template: 'plotly_white',
-    legend: { 
-      orientation: 'v', 
-      x: 1, 
-      y: 1, 
-      xanchor: 'right', 
-      yanchor: 'top' 
-    } 
-  };
+var layout = {
+  title: 'Metacritic Score (Top 5 vs Bottom 5)',
+  xaxis: {
+    title: 'Trope',
+    tickangle: -45
+  },
+  yaxis: {
+    title: 'Metacritic Score',
+  },
+  margin: {
+    b: 150,  // Increase bottom margin to give more space for x-axis labels
+    l: 80,   // Increase left margin to provide space for y-axis label
+    t: 50,   // Add space at the top for title
+    r: 50    // Add space on the right
+  },
+  width: 900,   // Set the width of the plot
+  height: 500,  // Set the height of the plot
+  template: 'plotly_white',
+  legend: { 
+    orientation: 'v', 
+    x: 1, 
+    y: 1, 
+    xanchor: 'right', 
+    yanchor: 'top' 
+  }
+};
 
-  // Render the plot
-  Plotly.newPlot('allTropesMetacriticRating', data, layout);
+// Render the plot
+Plotly.newPlot('allTropesMetacriticRating', data, layout);
+
 </script>
 
 ## Which trope is the best?
@@ -1254,22 +1272,37 @@ To remain objective, it is worth noting that the tropes we had available are not
   var pieValues = [599, 102]; // Example counts
 
   var pieData = [
-    {
-      labels: pieLabels,
-      values: pieValues,
-      type: 'pie',
-      textinfo: 'label+percent',
-      hoverinfo: 'label+percent',
-      marker: {
-        colors: ['#EE', '#EF553B'] // Example colors
-      }
+  {
+    labels: pieLabels,
+    values: pieValues,
+    type: 'pie',
+    textinfo: 'label+percent',
+    hoverinfo: 'label+percent',
+    marker: {
+      colors: ['#EE', '#EF553B'] // Example colors
     }
-  ];
+  }
+];
 
-  var pieLayout = {
-    title: 'Gender Distribution in the Dataset',
-    template: 'plotly_white'
-  };
+var pieLayout = {
+  title: 'Gender Distribution in the Dataset',
+  template: 'plotly_white',
+  width: 700,  // Set the width of the pie chart
+  height: 500, // Set the height of the pie chart
+  margin: {
+    t: 50,  // Add space at the top for title
+    b: 50,  // Add space at the bottom
+    l: 50,  // Add space on the left
+    r: 50   // Add space on the right
+  }
+};
 
-  Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
+Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
+
 </script>
+<br>
+<h1> Regression Analysis </h1>
+
+<br>
+
+<h1>Data Story Conclusion</h1>
