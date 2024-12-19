@@ -12,31 +12,41 @@ In this exploration, we'll examine how different elements—such as ratings, sta
 
 <div style="display: flex; gap: 15px; justify-content: center;">
     <div style="text-align: center;">
-        <img src="scientists_pics/ivan.png" alt="Ivan" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/ivan.png" alt="Ivan" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
         <p style="margin-bottom: 5px;">Ivan</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in MTE</p>
     </div>
     <div style="text-align: center;">
-        <img src="scientists_pics/david.jpg" alt="David" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/david.jpg" alt="David" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
         <p style="margin-bottom: 5px;">David</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
     </div>
     <div style="text-align: center;">
-        <img src="scientists_pics/adam.jpg" alt="Adam" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/adam.jpg" alt="Adam" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
         <p style="margin-bottom: 5px;">Adam</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
     </div>
     <div style="text-align: center;">
-        <img src="scientists_pics/ali.png" alt="Ali" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/ali.png" alt="Ali" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
         <p style="margin-bottom: 5px;">Ali</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in EEE</p>
     </div>
     <div style="text-align: center;">
-        <img src="scientists_pics/dana.png" alt="Dana" style="width: 160px; height: 160px;"/>
+        <img src="scientists_pics/dana.png" alt="Dana" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
         <p style="margin-bottom: 5px;">Dana</p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in NX</p>
     </div>
 </div>
+<!-- 
+<style>
+  div img:hover {
+    transform: scale(1.1) rotate(5deg); /* Scale up and rotate slightly */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2); /* Increase shadow size */
+    opacity: 0.9; /* Slight opacity change */
+  }
+</style> -->
+
+
 
 <br>
 
