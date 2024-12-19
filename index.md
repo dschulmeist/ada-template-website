@@ -1252,7 +1252,7 @@ Plotly.newPlot('allTropesMetacriticRating', data, layout);
 
 </script>
 
-## Which trope is the best?
+<h2> Which trope is the best?</h2>
 Now that we have visualized which tropes score best in each category, let us propose which trope could be the best predictor for a successful movie! Firstly, we make an observation that there is no overlap between the top 5 tropes ranked by Box Office revenue and the IMDb top 5. Similarly, no overlap between Box Office top 5 and Metacritic top 5. However, the Metacritic and IMDb top 5 share multiple tropes, namely: *Stupid Crooks*, *Doormat*, *Morally bankrupt banker*. Notice that all of these characters show silly or negative traits. It seems there is something people enjoy about these characteristics, perhaps they make us laugh. 
 
 However, the Box Office top 5 include tropes such as: *Gadgeteer Genius* and *Child Prodigy*. These only ranked average in IMDb and Metacritic, but performed exceptionally well in the Box Office. Is it envy which makes us admire these characters, but only silently without ranking them well? Or are they not ranked well simply because it is a cliché? We would need a more thorough analysis to uncover the reasons, but the trend seems to point this way.
@@ -1260,7 +1260,7 @@ However, the Box Office top 5 include tropes such as: *Gadgeteer Genius* and *Ch
 Finally, we conclude that the choice of the tropes ultimately comes down to what the movie is trying to optimize for. If it is Box Office revenue - make a movie about a genius! If audience or critics reception is the goal - a silly character which provides a good laugh could be a better choice.
 
 
-## Remarks about the data used
+<h2>Remarks about the data used</h2>
 To remain objective, it is worth noting that the tropes we had available are not the best representation of the ground truth. They were only selected from around 500 successful movies and the corresponding characters were disproportionally represented by mostly men. The distribution can be clearly visible in the pie chart.
 
 <div id="genderDistributionPie" style="width:100%; max-width:500px; height:500px;"></div>
@@ -1287,13 +1287,13 @@ To remain objective, it is worth noting that the tropes we had available are not
 var pieLayout = {
   title: 'Gender Distribution in the Dataset',
   template: 'plotly_white',
-  width: 700,  // Set the width of the pie chart
-  height: 500, // Set the height of the pie chart
+  width: 700,  
+  height: 500, 
   margin: {
-    t: 50,  // Add space at the top for title
-    b: 50,  // Add space at the bottom
-    l: 50,  // Add space on the left
-    r: 50   // Add space on the right
+    t: 50,  
+    b: 50,  
+    l: 50,  
+    r: 50   
   }
 };
 
@@ -1306,3 +1306,30 @@ Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
 <br>
 
 <h1>Data Story Conclusion 🎥 🧪🔬💊 </h1>
+
+
+In our scientific investigation of movie success, we analyzed multiple variables to understand their impact on a film's performance, treating each factor like a distinct element in an experiment.
+
+- Actor Success & Oscar Score: Our experiment revealed a slight positive correlation between the Oscar Score and movie ratings. This suggests that higher recognition at the Oscars may contribute to a movie's success, though this factor may interact with others, similar to how variables in a lab experiment influence each other.
+
+- Budget: The effect of budget on success was less pronounced than anticipated. Much like a chemical reaction, the right conditions (e.g., timing, marketing) seemed to matter more than just the raw material (budget) itself.
+
+- Timing of Release: We observed a “summer phenomenon,” where films released in the summer months had significantly better performance. This could be likened to a favorable environmental condition in a lab experiment, where the timing and setting directly impact the results.
+
+
+- Production Country: The data showed a clear dominance of American films, reflecting Hollywood’s global influence. This "bias" in our sample could be compared to a skewed control group in a lab experiment, highlighting the importance of considering regional factors in our analysis.
+
+
+- Tropes: Certain tropes, such as "stupid crooks" and "morally bankrupt bankers," acted like successful catalysts in both critical and commercial reactions. Additionally, the data suggests that male-dominated narratives are still prevalent, akin to an unbalanced sample in a scientific study.
+
+- Regression Analysis: 
+
+<p style="font-weight: 700"> Therefore, the chemical concoction for a successful film would include a release date in the summer, using popular tropes like stupid crooks or morally bankrupt bankers, to optimize both box office earnings and audience reception. </p>
+
+
+*With empirical precision, from the Blue Sweater Research Team. Wishing you all a scientifically delightful Christmas, New Year, and joyful holidays in general!* 🎁🎄🎬❄️
+
+
+
+
+
