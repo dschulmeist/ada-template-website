@@ -489,28 +489,45 @@ Success, much like in the lab, is not defined by a single variable. A blockbuste
 <!-- TIMING -->
 # Release Date Timing
 
-The timing of a movie's release is like a catalyst in the formula for its success. Seasons like summer and the holidays often act as "peak reaction times," driving higher box office earnings and audience engagement. This raises the hypothesis: Do films released during these periods consistently perform better?
-
-In this cinematic experiment, we’ll analyze how seasonality—whether during the "blockbuster summer," "holiday warmth," or "off-peak chill"—affects box office performance and ratings. By isolating these variables, we aim to uncover patterns explaining how timing influences a film's success.onal effects on a film's overall success.
+The timing of a movie's release plays a crucial role in its success. Do films released during specific periods, such as summer or the winter holidays, tend to perform better? Let's explore the data below!
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+Overall, our data shows that more movies are released in the fall than in any other season
 
-The fall season steals the spotlight, boasting the highest number of movie releases compared to any other season. It's the industry's blockbuster breeding ground!
 <div id="movies_count_graph" style="height: 400px;"></div>
 
-Sheer quantity isn't everything. Let's dive deeper—how does the revenue stack up across seasons.
+Sheer quantity isn't everything.  Let us see how well people and professionals like the movies in each season.
+
+<div id="audience_timing" style="height: 400px;"></div>
+
+The audience perception surpringly does not change across seasons! And across all the most popular critique sites like IMDb, TMDb, Rotten Tomato, and Metacritic. But what about revenue and box office?
 
 <div id="revenue_graph" style="height: 400px;"></div>
 
-Let's focus on the heartbeat of the film industry: ticket sales, Box office numbers.
 <div id="box_office_graph" style="height: 400px;"></div>
+
+Oh, the blockbuster effect !  Movie studios often release their most anticipated films during the summer, when school is out and families are more likely to go to the theater. This results in higher audience turnout and larger revenue.
+
+Spring also sees a fair amount of success due to less competition, as some studios release films earlier in the year to capture the attention of moviegoers before the summer rush. 
+
+Winter sees a decline in revenue, likely because audiences are more focused on the holidays and other festive activities, and fewer major releases are scheduled. 
+
+Fall typically has the lowest revenue as movie releases tend to be fewer, with studios holding back major films for the end of the year to align with award seasons. 
 
 Now, let’s break it down even further. How does movie revenue fluctuate week by week throughout the year. I would like to call that "the Christmas peak".
 
 <div id="weekly_revenue_graph" style="height: 400px;"></div>
 
-In summary, while fall sees the most releases, summer dominates revenue, highlighting the impact of timing. Weekly trends further show how holidays and key moments drive audience engagement and industry success.
+Wow, if we break down the movie revenue by week, we can really see how major holidays cause those big spikes. For instance,
+
+-  around week 8 (February), we see a rise, probably thanks to Valentine’s Day and all the romance-themed movies. 
+- in week 30 (late July), there's another boost with summer break and more people heading to the theaters.
+-  a dip in week 35 when school starts up again.
+- week 44 sees a peak around Halloween, with horror and thriller movies doing well.  
+- 46–48, there's a slight uptick for Thanksgiving as families gather, and of course, a huge jump in December with Christmas and New Year’s. 
+
+So, while summer is usually the top performer, these holiday spikes really show how releasing movies around specific times can tap into different audiences.
 
 <script>
   var seasons = ['Fall', 'Spring', 'Summer','Winter'];
@@ -551,6 +568,13 @@ var revenue_trace = {
     y: revenue,
     type: 'bar',
     marker: { color: '#FF7300' },  
+};
+
+var audience_trace = {
+    x: seasons,
+    y: avg_scores,
+    type: 'bar',
+    marker: { color: '#blue' },  
 };
 
 
@@ -596,11 +620,19 @@ var revenue_trace = {
     yaxis: { title: 'Average Revenue (in USD)' },
   };
 
+  var aud_time_layout = {
+    title: 'Average Movie Score per Season',
+    xaxis: { title: 'Season' },
+    yaxis: { title: 'Aeverage Movie Score' },
+  };
+
+
   // Create the plots with specific layouts
   Plotly.newPlot('movies_count_graph', [movies_count_trace], movies_count_layout);
   Plotly.newPlot('revenue_graph', [revenue_trace], revenue_layout);
   Plotly.newPlot('box_office_graph', [box_office_trace], box_office_layout);
   Plotly.newPlot('weekly_revenue_graph', [weekly_revenue_trace], weekly_revenue_layout);
+  Plotly.newPlot('audience_timing', [audience_trace], aud_time_layout);
 
 </script>
 
