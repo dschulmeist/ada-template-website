@@ -879,7 +879,24 @@ The below plot demonstrates the average Box Office Revenue of each trope
       marker: {
         color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
         line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      }
+      },
+      showlegend: false
+    },
+    // Dummy trace for the top 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(55, 128, 191, 0.7)' },
+      name: 'Top 5' // Legend label
+    },
+    // Dummy trace for the bottom 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(219, 64, 82, 0.7)' },
+      name: 'Bottom 5' // Legend label
     }
   ];
 
@@ -896,7 +913,14 @@ The below plot demonstrates the average Box Office Revenue of each trope
     margin: {
       b: 150 // Increase bottom margin to give more space for x-axis labels
     },
-    template: 'plotly_white'
+    template: 'plotly_white',
+    legend: { 
+      orientation: 'v', 
+      x: 1, 
+      y: 1, 
+      xanchor: 'right', 
+      yanchor: 'top' 
+    } 
   };
 
   // Render the plot
@@ -932,7 +956,24 @@ Similarly to the Box Office Revenue, let us look at the top 5 and bottom 5 trope
       marker: {
         color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
         line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      }
+      },
+      showlegend: false
+    },
+    // Dummy trace for the top 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(55, 128, 191, 0.7)' },
+      name: 'Top 5' // Legend label
+    },
+    // Dummy trace for the bottom 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(219, 64, 82, 0.7)' },
+      name: 'Bottom 5' // Legend label
     }
   ];
 
@@ -948,7 +989,14 @@ Similarly to the Box Office Revenue, let us look at the top 5 and bottom 5 trope
     margin: {
       b: 150 // Increase bottom margin to give more space for x-axis labels
     },
-    template: 'plotly_white'
+    template: 'plotly_white',
+    legend: { 
+      orientation: 'v', 
+      x: 1, 
+      y: 1, 
+      xanchor: 'right', 
+      yanchor: 'top' 
+    } 
   };
 
   // Render the plot
@@ -982,7 +1030,24 @@ Finally, let us look at the top 5 and bottom 5 tropes based on the Metacritic Sc
       marker: {
         color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 0.7)' : 'rgba(219, 64, 82, 0.7)'),
         line: { color: xData.map((_, i) => i < 5 ? 'rgba(55, 128, 191, 1.0)' : 'rgba(219, 64, 82, 1.0)'), width: 2 }
-      }
+      },
+      showlegend: false
+    },
+    // Dummy trace for the top 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(55, 128, 191, 0.7)' },
+      name: 'Top 5' // Legend label
+    },
+    // Dummy trace for the bottom 5 legend
+    {
+      x: [null], // No data points
+      y: [null],
+      type: 'bar',
+      marker: { color: 'rgba(219, 64, 82, 0.7)' },
+      name: 'Bottom 5' // Legend label
     }
   ];
 
@@ -998,7 +1063,14 @@ Finally, let us look at the top 5 and bottom 5 tropes based on the Metacritic Sc
     margin: {
       b: 150 // Increase bottom margin to give more space for x-axis labels
     },
-    template: 'plotly_white'
+    template: 'plotly_white',
+    legend: { 
+      orientation: 'v', 
+      x: 1, 
+      y: 1, 
+      xanchor: 'right', 
+      yanchor: 'top' 
+    } 
   };
 
   // Render the plot
