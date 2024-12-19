@@ -291,7 +291,7 @@ It is thus  useful to conduct further experiments and explore additional factors
 Type in the name of an actor in the search bar below to see their IMDb score, Oscar score, and number of movies they have appeared in.
 
 {% raw %}
-## Actor Search
+<h1>Actor Search</h1>
 <div id="search-container">
     <input type="text" id="actor-search" placeholder="Enter an actor's name..." style="width: 300px; padding: 10px;">
 </div>
