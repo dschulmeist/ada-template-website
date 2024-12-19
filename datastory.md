@@ -2,18 +2,18 @@
 layout: full
 ---
 
-Welcome to the BlueSweater Lab, where we treat movies as complex chemical reactions—combining various elements that can either explode into blockbuster success or fizzle into obscurity! From budgets and genres to audience ratings and box office numbers, every factor plays a pivotal role in a movie’s success formula.
+Welcome to the BlueSweater Lab, where we treat movies as complex chemical reactions—combining various elements that can either explode into blockbuster success or fizzle into obscurity!
 
-<p style="font-weight: 700"> Our goal: to identify the key ingredients that contribute to a movie’s success and uncover what truly makes a film resonate with audiences.</p>
+<p style="font-weight: 700"> Our goal is to identify the key ingredients that contribute to a movie’s success and uncover what truly makes a film resonate with audiences.</p>
 
-In this exploration, we'll examine how different elements—such as ratings, star power, Oscar wins, genre, and production country—interact and influence a movie’s journey to the top. But first, meet the team :)
+In this data story, we'll examine how different elements such as ratings, star power, Oscar wins, genre, and production country interact and influence a movie’s journey to the top. But first, meet the team :)
 
-## Meet Our BlueSweater Lab Members 
+<h2> Meet Our BlueSweater Lab Members 🔬🧪🥽 </h2> 
 
 <div style="display: flex; gap: 15px; justify-content: center;">
     <div style="text-align: center;">
         <img src="scientists_pics/ivan.png" alt="Ivan" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">Ivan</p>
+        <p style="margin-bottom: 5px;">Ivan </p>
         <p style="margin-top: 0; margin-bottom: 0;">MSc in MTE</p>
     </div>
     <div style="text-align: center;">
@@ -37,25 +37,23 @@ In this exploration, we'll examine how different elements—such as ratings, sta
         <p style="margin-top: 0; margin-bottom: 0;">MSc in NX</p>
     </div>
 </div>
-<!-- 
+
 <style>
   div img:hover {
-    transform: scale(1.1) rotate(5deg); /* Scale up and rotate slightly */
+    transform: scale(1.1) rotate(3deg); /* Scale up and rotate slightly */
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2); /* Increase shadow size */
     opacity: 0.9; /* Slight opacity change */
   }
-</style> -->
-
-
+</style>
 
 <br>
 
-## Let’s get started by deriving our ingredients...
+<h2> Let’s get started by deriving our ingredients... </h2>
 
 The primary dataset we'll use for this analysis is the **CMU Movie Dataset**, which contains key information like:
 
 - Movie ID (Wikipedia, Freebase)
-- Name
+- Movie Name
 - Release Date
 - Box Office Revenue
 - Runtime
@@ -75,14 +73,14 @@ With our enriched data, our master dataset now includes:
 
 However, not all columns will be used in the analysis, as we’ll focus on the most relevant factors for our success prediction model.
 
-## Addressing key issues with our dataset
+<h2> Addressing key issues with our dataset 🌪️ 🌀</h2>
 
-### 1) Duplicates
+<h3> 1) Duplicates </h3>
 There are 6,377 duplicates in the dataset. Initially, we considered dropping movies with the same title, but this approach could remove important variations—such as different release years or production countries. 
 
-For example, "100 Days" appears twice: once in 1991 and again in 2001. Therefore, we'll retain duplicates to preserve the data's richness.
+For example, "100 Days" appears twice: once in 1991 and again in 2001, representing two different adaptations of the same storyline. Therefore, we will keep duplicates to preserve the richness and diversity of the data.
 
-### 2) Nulls
+<h3> 2) Nulls</h3>
 
 <div id="null-chart"></div>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -102,14 +100,14 @@ For example, "100 Days" appears twice: once in 1991 and again in 2001. Therefore
       27.43, 25.04, 22.61, 8.46, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 
       0.00, 0.00
     ],
-    marker: { color: 'purple' },
-    hovertemplate: '%{y}%<extra></extra>'  // Hover display only
+    marker: { color: 'dark blue' },
+    hovertemplate: '%{y}%<extra></extra>' 
   }];
   
   var layout = {
     title: 'Percentage of Null Values in Movie Dataset Columns',
     xaxis: {
-      title: 'Columns',
+      title: 'Dataset Columns',
       tickangle: 45
     },
     yaxis: {
@@ -123,11 +121,9 @@ For example, "100 Days" appears twice: once in 1991 and again in 2001. Therefore
   Plotly.newPlot('null-chart', data, layout);
 </script>
 
-Our dataset contains a significant number of missing values, especially in the Box Office Revenue column. This poses challenges for standard data-cleaning methods, such as removing rows with null values or imputing them with the mean, as these approaches could result in considerable data loss.
+Our dataset contains numerous missing values, particularly in the Box Office Revenue column. This creates challenges for standard data-cleaning methods, such as removing rows with null values or imputing them with the mean, as these approaches could lead to significant data loss. However, since Box Office Revenue is a component of Total Movie Revenue—which has fewer missing values—we can prioritize using both Box Office Revenue and Total Revenue for analysis.
 
-That said, it's important to recognize that Box Office Revenue represents only one component of the total revenue, and the Revenue column has far fewer missing values. This allows us to analyze the relationship between box office revenue and total revenue to extract meaningful insights.
-
-For other columns with missing data—such as Producers, Production Company, Writers, and Director—we've decided not to prioritize them in our analysis. Additional details on this decision can be found in the analysis proposal section.
+For other columns with missing data—such as Producers, Production Company, Writers, and Director—we've decided not to prioritize them in our analysis. Additional details on this decision can be found below.
 
 To deal with the rest of the nulls, we employed two strategies:
 
@@ -136,7 +132,7 @@ To deal with the rest of the nulls, we employed two strategies:
 
 
 
-| Column             | Before OMDB API (Nulls) | After OMDB API (NUlls) |
+| Column             | Before OMDB API (Nulls) | After OMDB API (Nulls) |
 |--------------------|-------------------------|------------------------|
 | Box Office Revenue | 73,452                  | 68,270                 |
 | Runtime            | 20,498                  | 11,642                 |
@@ -144,29 +140,29 @@ To deal with the rest of the nulls, we employed two strategies:
 
 The OMDB API successfully replaced hundreds of null values, improving the dataset compared to its previous state.
 
-##  Derived chemical movie ingredients
+<h2>  Derived chemical movie ingredients 🧪</h2>
 
 From the above dataset, its helpers and api, we have derived the following chemical movie ingredietns that we will be exploring in our project:
 
-### Section 1: Global Influence in Cinema  
-The global cinema landscape reflects the dominance of certain countries and languages in shaping the film industry. To be more specific, we plan to analyze our data to identify the top countries and languages in the film industry. Additionally, we examined how these factors relate to critical metrics such as budget and revenue, offering insights into their impact on global cinematic success. This approach provides a straightforward yet valuable perspective on the key players and their contributions to the entertainment ecosystem.
+<h3> Section 1: Oscars </h3>
+- How does the Oscar Score correlate with performance metrics such as box office revenue and audience ratings?
 
-### Section 2: Blueprint of Success in Acting 
-In the movie lab, an actor's journey to stardom is a critical ingredient in our cinematic formula. Actors reach their breakthrough moments at different stages—at what age do they typically "ignite," and is there a critical mass of roles that triggers success, or can one iconic role act as a catalyst for fame? Does this trajectory vary between men and women? To analyze this, we also use our *Oscar Score*, a weighted metric reflecting actors' achievements through Oscar wins and nominations, to uncover trends in performance, box office revenue, audience ratings, and age, shedding light on the paths actors take to rise to prominence.
+<h3> Section 2: Budget and Success Correlation </h3>
+- To what extent does a high budget predict commercial success?
+
+<h3> Section 3: Timing and Audience Reception</h3>
+- How do seasonal and holiday release periods impact a film’s box office performance and audience reception?
+
+<h3> Section 4: Global Influence in Cinema  </h3>
+- Which countries and languages dominate the global film industry, and how do they influence critical metrics such as budget and revenue?
 
  
-### Section 3: Tropes and their influence on Movie Success
-Character tropes are central to storytelling, but which ones consistently lead to success on the big screen? In this section, we will explore how different character archetypes and gender pairings impact a film’s performance, from box office revenue to critics’ and audience ratings. By analyzing patterns in successful movies, we aim to uncover which tropes resonate most with viewers and whether certain dynamics—such as the pairing of leads by gender or genre-specific archetypes—play a significant role. This study seeks to provide insights into the storytelling elements that drive both commercial and critical acclaim, offering a deeper understanding of how character dynamics shape the overall success of a movie. 
+<h3> Section 5: Tropes and their influence on Movie Success</h3>
+- Which character tropes and gender pairings have the greatest impact on a film’s success, measured by box office revenue, critics’ ratings, and audience ratings? 
+- How do genre-specific archetypes and lead dynamics contribute to commercial and critical acclaim?
 
-
-### Section 4: Budget and Success Correlation 
-Does a high budget truly guarantee commercial success, or are other factors more influential in determining a movie’s performance? In this section, we will examine the relationship between budget size and success by analyzing box office-to-budget ratios and comparing the relative "custom rating" performance of the highest-budget films each year. Beyond sheer financial investment, we’ll investigate the role of high-profile collaborations, such as A-list actors and directors, in shaping outcomes. This analysis aims to uncover whether bigger budgets consistently lead to better results or if success depends on a more nuanced combination of resources, talent, and strategic execution.
-
-
-### Section 5: Timing and Audience Reception
-Timing can make or break a movie’s success, but when is the optimal moment to release a film? This section explores the influence of seasonal and holiday periods on audience reception and box office revenue. By segmenting the year into distinct timeframes, we will analyze how factors such as genre, sequel status, and prevailing cultural moods align with release strategies. This investigation aims to identify patterns in audience behavior and uncover strategies that filmmakers and studios can use to maximize both reception and financial performance. Understanding the timing sweet spot could provide valuable insights into the art and science of film release planning.
-
-
+<h3> Section 6: Regression analysis </h3>
+- blah blah
 
 <!-- OSCARS -->
 # Oscars
