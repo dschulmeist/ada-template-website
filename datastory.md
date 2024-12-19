@@ -8,45 +8,125 @@ Welcome to the BlueSweater Lab, where we treat movies as complex chemical reacti
 
 In this data story, we'll examine how different elements such as ratings, star power, Oscar wins, genre, and production country interact and influence a movie’s journey to the top. But first, meet the team :)
 
-<h2> Meet Our BlueSweater Lab Members 🔬🧪🥽 </h2> 
+<h2> Meet Our BlueSweater Lab Members 🔬🧪🥽 </h2>
 
-<div style="display: flex; gap: 15px; justify-content: center;">
-    <div style="text-align: center;">
-        <img src="scientists_pics/ivan.png" alt="Ivan" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">Ivan </p>
-        <p style="margin-top: 0; margin-bottom: 0;">MSc in MTE</p>
+<div class="team-container">
+    <div class="team-member">
+        <img src="scientists_pics/ivan.png" alt="Ivan"/>
+        <p class="name">Ivan</p>
+        <p class="title">MSc in MTE</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/david.jpg" alt="David" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">David</p>
-        <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
+    <div class="team-member">
+        <img src="scientists_pics/david.jpg" alt="David"/>
+        <p class="name">David</p>
+        <p class="title">MSc in CS</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/adam.jpg" alt="Adam" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">Adam</p>
-        <p style="margin-top: 0; margin-bottom: 0;">MSc in CS</p>
+    <div class="team-member">
+        <img src="scientists_pics/adam.jpg" alt="Adam"/>
+        <p class="name">Adam</p>
+        <p class="title">MSc in CS</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/ali.png" alt="Ali" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">Ali</p>
-        <p style="margin-top: 0; margin-bottom: 0;">MSc in EEE</p>
+    <div class="team-member">
+        <img src="scientists_pics/ali.png" alt="Ali"/>
+        <p class="name">Ali</p>
+        <p class="title">MSc in EEE</p>
     </div>
-    <div style="text-align: center;">
-        <img src="scientists_pics/dana.png" alt="Dana" style="width: 160px; height: 160px; border-radius: 5px; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"/>
-        <p style="margin-bottom: 5px;">Dana</p>
-        <p style="margin-top: 0; margin-bottom: 0;">MSc in NX</p>
+    <div class="team-member">
+        <img src="scientists_pics/dana.png" alt="Dana"/>
+        <p class="name">Dana</p>
+        <p class="title">MSc in NX</p>
     </div>
 </div>
 
 <style>
-  div img:hover {
-    transform: scale(1.1) rotate(3deg); /* Scale up and rotate slightly */
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2); /* Increase shadow size */
-    opacity: 0.9; /* Slight opacity change */
+  /* Container for the team members */
+  .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  /* Team member card */
+  .team-member {
+    text-align: center;
+    flex: 1 1 150px; /* Adjusts to screen size with min-width */
+    max-width: 180px; 
+  }
+
+  /* Images for team members */
+  .team-member img {
+    width: 100%; 
+    max-width: 160px; 
+    height: auto; 
+    border-radius: 5px; 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+  }
+
+  /* Image hover effects */
+  .team-member img:hover {
+    transform: scale(1.1) rotate(3deg); 
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2); 
+    opacity: 0.9; 
+  }
+
+  /* Name and title styles */
+  .team-member .name {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .team-member .title {
+    margin-top: 0; 
+    margin-bottom: 0; 
+    font-size: 0.9rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .team-member {
+      flex: 1 1 120px; 
+      max-width: 120px; 
+    }
+
+    .team-member img {
+      max-width: 120px;
+    }
+
+    .team-member .name {
+      font-size: 0.9rem;
+    }
+
+    .team-member .title {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .team-container {
+      flex-direction: column; 
+      align-items: center; 
+    }
+
+    .team-member {
+      width: 100%;
+      max-width: 100px; 
+    }
+
+    .team-member img {
+      max-width: 100px;
+    }
+
+    .team-member .name {
+      font-size: 0.85rem;
+    }
+
+    .team-member .title {
+      font-size: 0.75rem;
+    }
   }
 </style>
-
-<br>
 
 <h2> Let’s get started by deriving our ingredients... </h2>
 
