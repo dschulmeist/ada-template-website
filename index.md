@@ -312,7 +312,7 @@ document.getElementById('actor-search').addEventListener('input', function() {
             <p>🎥 Number of Movies: ${foundActor.num_movies}</p>
         `;
     } else {
-        resultContainer.innerHTML = `<p style="color:red;">❌ Actor "${this.value}" not found.</p>`;
+        resultContainer.innerHTML = `<p style="color:red;">❌ Actor "${this.value}" has no Score.</p>`;
     }
 });
 </script>
