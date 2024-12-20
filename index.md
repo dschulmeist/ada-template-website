@@ -2264,7 +2264,7 @@ In our scientific investigation of movie success, we analyzed multiple variables
 
 - Tropes: Certain tropes, such as "stupid crooks" and "morally bankrupt bankers," acted like successful catalysts in both critical and commercial reactions. Additionally, the data suggests that male-dominated narratives are still prevalent, akin to an unbalanced sample in a scientific study.
 
-- Regression Analysis: 
+- Regression Analysis: The regression analysis revealed that runtime and director frequency are strong predictors of both IMDb Ratings and Box Office Revenue. However, metric-specific factors such as country frequency and genre popularity influence success differently, highlighting the nuanced nature of these relationships.
 
 <p style="font-weight: 700"> Therefore, the chemical concoction for a successful film would include a release date in the summer, using popular tropes like stupid crooks or morally bankrupt bankers, to optimize both box office earnings and audience reception. Additionally, ensuring a longer runtime and working with a high-frequency director could further enhance the film's chances of success across critical and commercial metrics</p>
 
