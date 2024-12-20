@@ -1327,7 +1327,7 @@ In our scientific investigation of movie success, we analyzed multiple variables
 
 - Regression Analysis: 
 
-<p style="font-weight: 700"> Therefore, the chemical concoction for a successful film would include a release date in the summer, using popular tropes like stupid crooks or morally bankrupt bankers, to optimize both box office earnings and audience reception. </p>
+<p style="font-weight: 700"> Therefore, the chemical concoction for a successful film would include a release date in the summer, using popular tropes like stupid crooks or morally bankrupt bankers, to optimize both box office earnings and audience reception. Additionally, ensuring a longer runtime and working with a high-frequency director could further enhance the film's chances of success across critical and commercial metrics</p>
 
 
 *With empirical precision, from the Blue Sweater Research Team. Wishing you all a scientifically delightful Christmas, New Year, and joyful holidays in general!* 🎁🎄🎬❄️
