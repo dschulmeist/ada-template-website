@@ -1306,7 +1306,6 @@ Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
 <br>
 <h1> Regression Analysis ✏️ </h1>
 
-<br>
 
 When people evaluate the success of the movies, they are using they personal opinion, which extremely heterogeneous and biased. To solve that issue and identify factors, which are the secret sauce for the movies success, we used **3 success metrics**: 
 
