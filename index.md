@@ -242,7 +242,7 @@ From the above dataset, its helpers and api, we have derived the following chemi
 - How do genre-specific archetypes and lead dynamics contribute to commercial and critical acclaim?
 
 <h3> Section 6: Regression analysis </h3>
-- blah blah
+- In the regression settings, which factors can help predict success of the released movie? How do they interact?
 
 <br>
 <!-- OSCARS -->
@@ -461,7 +461,7 @@ The results are clear! Budget and revenue show a strong positive relationship, m
 
 <p style="font-weight: 700"> But here’s the catch:</p> 
 
-Revenue is not profit. Just as an expensive experiment might fail to yield a breakthrough, movies with massive budgets can still flop if audience reception or competition acts as a limiting factor.å
+Revenue is not profit. Just as an expensive experiment might fail to yield a breakthrough, movies with massive budgets can still flop if audience reception or competition acts as a limiting factor.
 
 <h2> Budget vs Average Movie Score </h2>
 
@@ -1307,6 +1307,946 @@ Plotly.newPlot('genderDistributionPie', pieData, pieLayout);
 <h1> Regression Analysis ✏️ </h1>
 
 <br>
+
+When people evaluate the success of the movies, they are using they personal opinion, which extremely heterogeneous and biased. To solve that issue and identify factors, which are the secret sauce for the movies success, we used **3 success metrics**: 
+
+1. IMDb rating
+2. box office (we will call it max revenue)
+3. number of oscar wins/nomination
+
+We will do regression analysis on these 3 metrics, because each of them represents a different perspective. IMDb for audience reception, box office represents the profit from the tickets, and oscar wins/nominations representing the professional critics view.
+
+Then we will try identify which covariates are important for movie to be considered good (IMDb rating > 8)
+
+
+After combining the Oscar dataset with IMDb rating and financial performance of the movie, we perform correlation analysis to select relevant feature and drop over-correlated features from analysis. We encode the categorical feature and standardize the numerical once. 
+
+Below plot demonstrates the correlation matrix between considered features:
+
+<div id="correlation-heatmap"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    var zValues = [[ 1.00000000e+00,  2.09713557e-01,  2.60701722e-01,
+         6.77053573e-02,  1.00307697e-01, -2.12153107e-03,
+         2.52941159e-03, -2.45106024e-03, -4.67584855e-03,
+         1.40228163e-02, -3.69616804e-03, -8.00560318e-03,
+         2.65330846e-03,  1.56827720e-02,  1.60456088e-03,
+        -4.14500311e-03,  1.93850604e-02, -2.17428655e-01,
+        -2.97954426e-01, -1.78698156e-01, -1.26120270e-01,
+         1.95350254e-01],
+       [ 2.09713557e-01,  1.00000000e+00,  2.63083384e-01,
+         5.15743891e-02,  9.81835756e-02, -4.59468725e-02,
+         1.00814144e-02,  7.24568910e-03,  8.96531763e-03,
+         5.81554989e-02,  1.06563354e-01,  1.01762019e-01,
+        -5.03973086e-03, -1.06947975e-02, -7.46283851e-03,
+         8.76981488e-02,  8.18665409e-02, -8.63002963e-02,
+        -2.88039475e-02,  1.91181750e-01,  2.42480934e-01,
+         7.78320448e-02],
+       [ 2.60701722e-01,  2.63083384e-01,  1.00000000e+00,
+        -2.94368773e-02, -6.96839555e-02,  2.01721656e-02,
+        -5.36853361e-03, -1.05758539e-02,  2.29106210e-03,
+         1.81643192e-02, -1.07458953e-02, -1.48351755e-02,
+        -6.95355729e-03,  2.65640332e-02, -2.31483494e-03,
+        -2.47190033e-02, -4.69093655e-02,  1.08027681e-01,
+         3.69803817e-02, -9.14682595e-02, -9.92412665e-02,
+        -1.22757813e-03],
+       [ 6.77053573e-02,  5.15743891e-02, -2.94368773e-02,
+         1.00000000e+00,  6.88341739e-01, -1.05298055e-02,
+        -6.42695126e-03,  4.85664590e-05, -1.00161991e-02,
+         6.89482866e-04,  1.11779404e-02, -1.03626662e-03,
+         1.22512853e-02,  2.99177846e-04,  8.63503685e-03,
+         2.07973569e-02,  4.80846741e-02, -3.48296621e-02,
+        -1.88832450e-02,  7.36599216e-02,  7.27675540e-02,
+         6.99999141e-02],
+       [ 1.00307697e-01,  9.81835756e-02, -6.96839555e-02,
+         6.88341739e-01,  1.00000000e+00, -1.99217580e-02,
+        -1.40018171e-02, -6.32408576e-03, -1.50355628e-02,
+         4.32567785e-03,  2.23550482e-02,  7.41292129e-03,
+         8.97679072e-03,  1.11709140e-02,  1.17271634e-02,
+         2.48770779e-02,  8.81641560e-02, -8.31131186e-02,
+        -5.66349588e-02,  1.33283608e-01,  1.45239549e-01,
+         1.17572800e-01],
+       [-2.12153107e-03, -4.59468725e-02,  2.01721656e-02,
+        -1.05298055e-02, -1.99217580e-02,  1.00000000e+00,
+        -4.81540106e-02, -5.13061670e-02, -5.05352867e-02,
+        -5.29969840e-02, -4.68684565e-02, -4.42457237e-02,
+        -4.95141731e-02, -5.66771690e-02, -5.58210467e-02,
+        -5.07720775e-02, -5.33912569e-02, -7.22962463e-03,
+        -1.03103942e-02,  2.30546465e-02,  3.47144713e-02,
+         2.20347107e-02],
+       [ 2.52941159e-03,  1.00814144e-02, -5.36853361e-03,
+        -6.42695126e-03, -1.40018171e-02, -4.81540106e-02,
+         1.00000000e+00, -5.05730989e-02, -4.98132331e-02,
+        -5.22397574e-02, -4.61987949e-02, -4.36135360e-02,
+        -4.88067092e-02, -5.58673595e-02, -5.50234695e-02,
+        -5.00466406e-02, -5.26283969e-02, -6.58190223e-03,
+        -4.30545791e-04,  1.44668918e-02,  1.37764672e-02,
+         2.25357221e-02],
+       [-2.45106024e-03,  7.24568910e-03, -1.05758539e-02,
+         4.85664590e-05, -6.32408576e-03, -5.13061670e-02,
+        -5.05730989e-02,  1.00000000e+00, -5.30740020e-02,
+        -5.56593663e-02, -4.92229631e-02, -4.64684734e-02,
+        -5.20015912e-02, -5.95244308e-02, -5.86252999e-02,
+        -5.33226883e-02, -5.60734461e-02, -7.02609420e-03,
+         7.66863529e-03,  2.69518015e-02,  2.59547525e-02,
+         2.26406121e-03],
+       [-4.67584855e-03,  8.96531763e-03,  2.29106210e-03,
+        -1.00161991e-02, -1.50355628e-02, -5.05352867e-02,
+        -4.98132331e-02, -5.30740020e-02,  1.00000000e+00,
+        -5.48230788e-02, -4.84833832e-02, -4.57702800e-02,
+        -5.12202621e-02, -5.86300703e-02, -5.77444490e-02,
+        -5.25215096e-02, -5.52309370e-02, -3.18533581e-03,
+         2.08271161e-03,  2.48232631e-02,  2.41859177e-02,
+         8.88565717e-03],
+       [ 1.40228163e-02,  5.81554989e-02,  1.81643192e-02,
+         6.89482866e-04,  4.32567785e-03, -5.29969840e-02,
+        -5.22397574e-02, -5.56593663e-02, -5.48230788e-02,
+         1.00000000e+00, -5.08451272e-02, -4.79998621e-02,
+        -5.37153262e-02, -6.14860843e-02, -6.05573222e-02,
+        -5.50799607e-02, -5.79213708e-02, -1.65101304e-02,
+        -1.00684391e-02,  1.41422787e-02,  1.41381335e-02,
+         3.43678482e-02],
+       [-3.69616804e-03,  1.06563354e-01, -1.07458953e-02,
+         1.11779404e-02,  2.23550482e-02, -4.68684565e-02,
+        -4.61987949e-02, -4.92229631e-02, -4.84833832e-02,
+        -5.08451272e-02,  1.00000000e+00, -4.24491976e-02,
+        -4.75037302e-02, -5.43758842e-02, -5.35545234e-02,
+        -4.87105594e-02, -5.12233913e-02, -1.03791691e-02,
+        -3.17995887e-03,  3.56556430e-02,  3.60332574e-02,
+         8.53924557e-03],
+       [-8.00560318e-03,  1.01762019e-01, -1.48351755e-02,
+        -1.03626662e-03,  7.41292129e-03, -4.42457237e-02,
+        -4.36135360e-02, -4.64684734e-02, -4.57702800e-02,
+        -4.79998621e-02, -4.24491976e-02,  1.00000000e+00,
+        -4.48454478e-02, -5.13330399e-02, -5.05576420e-02,
+        -4.59847436e-02, -4.83569587e-02, -1.65602169e-02,
+        -2.08783031e-03,  2.35999249e-02,  1.88158577e-02,
+        -2.36282345e-04],
+       [ 2.65330846e-03, -5.03973086e-03, -6.95355729e-03,
+         1.22512853e-02,  8.97679072e-03, -4.95141731e-02,
+        -4.88067092e-02, -5.20015912e-02, -5.12202621e-02,
+        -5.37153262e-02, -4.75037302e-02, -4.48454478e-02,
+         1.00000000e+00, -5.74453939e-02, -5.65776673e-02,
+        -5.14602624e-02, -5.41149432e-02, -2.28943144e-02,
+        -1.48029975e-02,  1.68120731e-02,  1.97975233e-02,
+         6.38527115e-03],
+       [ 1.56827720e-02, -1.06947975e-02,  2.65640332e-02,
+         2.99177846e-04,  1.11709140e-02, -5.66771690e-02,
+        -5.58673595e-02, -5.95244308e-02, -5.86300703e-02,
+        -6.14860843e-02, -5.43758842e-02, -5.13330399e-02,
+        -5.74453939e-02,  1.00000000e+00, -6.47625076e-02,
+        -5.89047905e-02, -6.19435121e-02, -3.71170022e-02,
+        -2.94532814e-02,  2.38057895e-02,  1.69365238e-02,
+         5.06539259e-02],
+       [ 1.60456088e-03, -7.46283851e-03, -2.31483494e-03,
+         8.63503685e-03,  1.17271634e-02, -5.58210467e-02,
+        -5.50234695e-02, -5.86252999e-02, -5.77444490e-02,
+        -6.05573222e-02, -5.35545234e-02, -5.05576420e-02,
+        -5.65776673e-02, -6.47625076e-02,  1.00000000e+00,
+        -5.80150194e-02, -6.10078405e-02, -1.14344820e-02,
+        -5.53258280e-03,  1.94450385e-02,  1.77412989e-02,
+         6.70770773e-03],
+       [-4.14500311e-03,  8.76981488e-02, -2.47190033e-02,
+         2.07973569e-02,  2.48770779e-02, -5.07720775e-02,
+        -5.00466406e-02, -5.33226883e-02, -5.25215096e-02,
+        -5.50799607e-02, -4.87105594e-02, -4.59847436e-02,
+        -5.14602624e-02, -5.89047905e-02, -5.80150194e-02,
+         1.00000000e+00, -5.54897299e-02,  8.21426498e-03,
+         1.91743813e-02,  2.82079527e-02,  2.38063964e-02,
+        -2.99692627e-03],
+       [ 1.93850604e-02,  8.18665409e-02, -4.69093655e-02,
+         4.80846741e-02,  8.81641560e-02, -5.33912569e-02,
+        -5.26283969e-02, -5.60734461e-02, -5.52309370e-02,
+        -5.79213708e-02, -5.12233913e-02, -4.83569587e-02,
+        -5.41149432e-02, -6.19435121e-02, -6.10078405e-02,
+        -5.54897299e-02,  1.00000000e+00, -2.44249330e-02,
+        -7.23248317e-03,  1.91846566e-02,  1.51153098e-02,
+         7.46389938e-03],
+       [-2.17428655e-01, -8.63002963e-02,  1.08027681e-01,
+        -3.48296621e-02, -8.31131186e-02, -7.22962463e-03,
+        -6.58190223e-03, -7.02609420e-03, -3.18533581e-03,
+        -1.65101304e-02, -1.03791691e-02, -1.65602169e-02,
+        -2.28943144e-02, -3.71170022e-02, -1.14344820e-02,
+         8.21426498e-03, -2.44249330e-02,  1.00000000e+00,
+         7.40420743e-01, -1.33145229e-02, -9.98957361e-03,
+        -1.74036577e-01],
+       [-2.97954426e-01, -2.88039475e-02,  3.69803817e-02,
+        -1.88832450e-02, -5.66349588e-02, -1.03103942e-02,
+        -4.30545791e-04,  7.66863529e-03,  2.08271161e-03,
+        -1.00684391e-02, -3.17995887e-03, -2.08783031e-03,
+        -1.48029975e-02, -2.94532814e-02, -5.53258280e-03,
+         1.91743813e-02, -7.23248317e-03,  7.40420743e-01,
+         1.00000000e+00,  6.90589645e-02,  5.64972143e-02,
+        -1.68215069e-01],
+       [-1.78698156e-01,  1.91181750e-01, -9.14682595e-02,
+         7.36599216e-02,  1.33283608e-01,  2.30546465e-02,
+         1.44668918e-02,  2.69518015e-02,  2.48232631e-02,
+         1.41422787e-02,  3.56556430e-02,  2.35999249e-02,
+         1.68120731e-02,  2.38057895e-02,  1.94450385e-02,
+         2.82079527e-02,  1.91846566e-02, -1.33145229e-02,
+         6.90589645e-02,  1.00000000e+00,  6.71288779e-01,
+         6.08159225e-02],
+       [-1.26120270e-01,  2.42480934e-01, -9.92412665e-02,
+         7.27675540e-02,  1.45239549e-01,  3.47144713e-02,
+         1.37764672e-02,  2.59547525e-02,  2.41859177e-02,
+         1.41381335e-02,  3.60332574e-02,  1.88158577e-02,
+         1.97975233e-02,  1.69365238e-02,  1.77412989e-02,
+         2.38063964e-02,  1.51153098e-02, -9.98957361e-03,
+         5.64972143e-02,  6.71288779e-01,  1.00000000e+00,
+         6.46362428e-02],
+       [ 1.95350254e-01,  7.78320448e-02, -1.22757813e-03,
+         6.99999141e-02,  1.17572800e-01,  2.20347107e-02,
+         2.25357221e-02,  2.26406121e-03,  8.88565717e-03,
+         3.43678482e-02,  8.53924557e-03, -2.36282345e-04,
+         6.38527115e-03,  5.06539259e-02,  6.70770773e-03,
+        -2.99692627e-03,  7.46389938e-03, -1.74036577e-01,
+        -1.68215069e-01,  6.08159225e-02,  6.46362428e-02,
+         1.00000000e+00]];
+    var xValues = ['Runtime', 'budget', 'Release_Year', 'total_wins', 'total_nominations',
+       'Month_1', 'Month_2', 'Month_3', 'Month_4', 'Month_5', 'Month_6',
+       'Month_7', 'Month_8', 'Month_9', 'Month_10', 'Month_11', 'Month_12',
+       'production_companies_frequency_encoded', 'director_frequency_encoded',
+       'Language_Name_frequency_encoded', 'Country_Name_frequency_encoded',
+       'Genre_Name_frequency_encoded'];
+    var colorscaleValue = [
+        [0, '#3D9970'],
+        [1, '#001f3f']
+    ];
+    var yValues = xValues;
+    var data = [{
+        x: xValues,
+        y: yValues,
+        z: zValues,
+        type: 'heatmap',
+        colorscale: colorscaleValue,
+        showscale: false
+    }];
+    var layout = {
+        title: {
+            text: 'Annotated Heatmap'
+        },
+        annotations: [],
+        xaxis: {
+            ticks: '',
+            side: 'top'
+        },
+        yaxis: {
+            ticks: '',
+            ticksuffix: ' ',
+            width: 1200,
+            height: 1200,
+            autosize: true
+    }
+    };
+    for ( var i = 0; i < yValues.length; i++ ) {
+    for ( var j = 0; j < xValues.length; j++ ) {
+        var currentValue = zValues[i][j];
+        if (currentValue != 0.0) {
+        var textColor = 'white';
+        }else{
+        var textColor = 'black';
+        }
+        var result = {
+        xref: 'x1',
+        yref: 'y1',
+        x: xValues[j],
+        y: yValues[i],
+        text: zValues[i][j].toFixed(2),
+        font: {
+            family: 'Arial',
+            size: 12,
+            color: 'rgb(50, 171, 96)'
+        },
+        showarrow: false,
+        font: {
+            color: textColor
+        }
+        };
+        layout.annotations.push(result);
+    }
+    }
+    Plotly.newPlot('correlation-heatmap', data, layout);
+    // <!-- const corrMatrix = {
+    //     z: Zvalues,
+    //     x: xValues,
+    //     y: xValues,
+    //     type: 'heatmap',
+    //     colorscale: 'RdBu',
+    //     zmin: -1,
+    //     zmax: 1,
+    //     colorbar: {
+    //         title: 'Correlation',
+    //         titleside: 'right'
+    //     }
+    // };
+    // const layout = {
+    //     title: 'Correlation Matrix for Movies Encoded',
+    //     width: 1000,
+    //     height: 1000,
+    //     xaxis: {
+    //         title: 'Features',
+    //         tickangle: 45
+    //     },
+    //     yaxis: {
+    //         title: 'Features'
+    //     }
+    // };
+    // Plotly.newPlot('correlation-heatmap', [corrMatrix], layout); -->
+</script>
+
+
+Our analysis reveals minimal correlation between most variables, with three notable clusters:
+
+- Director, Writers, Producers, and Production Companies: These columns show a high correlation after frequency encoding. This is likely because renowned directors often collaborate with well-known writers, producers, and production companies.
+
+- Language and Country: A strong correlation exists between these variables, as countries typically use their predominant language in film production.
+
+- Budget: Demonstrates interesting around 20% correlation with Runtime, Release Year, and around 10% with total nominations and wins (might indicate that money investment might payoff in more nominations)
+
+- To streamline our analysis, we included only a subset of these variables. The final selection was determined through experimentation to optimize relevance and impact.
+
+<h2> Linear Regression </h2>
+
+As mentioned above, with start with regression analysis and at first run it using box office revenue of the indicator of great movie. After running the linear regression we obtain the following table:
+
+<h3> Box Office Revenue Regression </h3>
+
+<table>
+    <tr>
+        <th>Variable</th>
+        <th>Coefficient</th>
+        <th>Standard Error</th>
+        <th>t-value</th>
+        <th>P-value</th>
+        <th>95% Confidence Interval (Lower)</th>
+        <th>95% Confidence Interval (Upper)</th>
+    </tr>
+    <tr>
+        <td>Intercept</td>
+        <td>-1.0891</td>
+        <td>1.092</td>
+        <td>-0.997</td>
+        <td>0.319</td>
+        <td>-3.230</td>
+        <td>1.052</td>
+    </tr>
+    <tr>
+        <td>Runtime</td>
+        <td>0.0046</td>
+        <td>0.015</td>
+        <td>0.313</td>
+        <td>0.754</td>
+        <td>-0.024</td>
+        <td>0.033</td>
+    </tr>
+    <tr>
+        <td>budget</td>
+        <td>0.6317</td>
+        <td>0.010</td>
+        <td>62.349</td>
+        <td>0.000</td>
+        <td>0.612</td>
+        <td>0.652</td>
+    </tr>
+    <tr>
+        <td>Release_Year</td>
+        <td>0.0005</td>
+        <td>0.001</td>
+        <td>0.940</td>
+        <td>0.347</td>
+        <td>-0.001</td>
+        <td>0.002</td>
+    </tr>
+    <tr>
+        <td>total_wins</td>
+        <td>0.1419</td>
+        <td>0.017</td>
+        <td>8.176</td>
+        <td>0.000</td>
+        <td>0.108</td>
+        <td>0.176</td>
+    </tr>
+    <tr>
+        <td>total_nominations</td>
+        <td>0.0492</td>
+        <td>0.007</td>
+        <td>7.224</td>
+        <td>0.000</td>
+        <td>0.036</td>
+        <td>0.063</td>
+    </tr>
+    <tr>
+        <td>Month_1</td>
+        <td>0.0155</td>
+        <td>0.042</td>
+        <td>0.365</td>
+        <td>0.715</td>
+        <td>-0.067</td>
+        <td>0.098</td>
+    </tr>
+    <tr>
+        <td>Month_2</td>
+        <td>-0.0207</td>
+        <td>0.042</td>
+        <td>-0.488</td>
+        <td>0.626</td>
+        <td>-0.104</td>
+        <td>0.062</td>
+    </tr>
+    <tr>
+        <td>Month_3</td>
+        <td>0.0157</td>
+        <td>0.042</td>
+        <td>0.378</td>
+        <td>0.705</td>
+        <td>-0.066</td>
+        <td>0.097</td>
+    </tr>
+    <tr>
+        <td>Month_4</td>
+        <td>0.0109</td>
+        <td>0.041</td>
+        <td>0.262</td>
+        <td>0.793</td>
+        <td>-0.070</td>
+        <td>0.092</td>
+    </tr>
+    <tr>
+        <td>Month_5</td>
+        <td>0.2161</td>
+        <td>0.039</td>
+        <td>5.474</td>
+        <td>0.000</td>
+        <td>0.139</td>
+        <td>0.293</td>
+    </tr>
+    <tr>
+        <td>Month_6</td>
+        <td>0.2140</td>
+        <td>0.041</td>
+        <td>5.176</td>
+        <td>0.000</td>
+        <td>0.133</td>
+        <td>0.295</td>
+    </tr>
+    <tr>
+        <td>Month_7</td>
+        <td>0.1599</td>
+        <td>0.043</td>
+        <td>3.754</td>
+        <td>0.000</td>
+        <td>0.076</td>
+        <td>0.243</td>
+    </tr>
+    <tr>
+        <td>Month_8</td>
+        <td>-0.0227</td>
+        <td>0.039</td>
+        <td>-0.577</td>
+        <td>0.564</td>
+        <td>-0.100</td>
+        <td>0.054</td>
+    </tr>
+    <tr>
+        <td>Month_9</td>
+        <td>-0.0651</td>
+        <td>0.037</td>
+        <td>-1.753</td>
+        <td>0.080</td>
+        <td>-0.138</td>
+        <td>0.008</td>
+    </tr>
+    <tr>
+        <td>Month_10</td>
+        <td>-0.0331</td>
+        <td>0.040</td>
+        <td>-0.837</td>
+        <td>0.403</td>
+        <td>-0.111</td>
+        <td>0.044</td>
+    </tr>
+    <tr>
+        <td>Month_11</td>
+        <td>0.0767</td>
+        <td>0.044</td>
+        <td>1.758</td>
+        <td>0.079</td>
+        <td>-0.009</td>
+        <td>0.162</td>
+    </tr>
+    <tr>
+        <td>Month_12</td>
+        <td>0.0408</td>
+        <td>0.038</td>
+        <td>1.062</td>
+        <td>0.288</td>
+        <td>-0.034</td>
+        <td>0.116</td>
+    </tr>
+    <tr>
+        <td>production_companies_frequency_encoded</td>
+        <td>0.0067</td>
+        <td>0.033</td>
+        <td>0.203</td>
+        <td>0.839</td>
+        <td>-0.058</td>
+        <td>0.071</td>
+    </tr>
+    <tr>
+        <td>director_frequency_encoded</td>
+        <td>-0.0055</td>
+        <td>0.295</td>
+        <td>-0.019</td>
+        <td>0.985</td>
+        <td>-0.583</td>
+        <td>0.572</td>
+    </tr>
+    <tr>
+        <td>Language_Name_frequency_encoded</td>
+        <td>-0.0034</td>
+        <td>0.017</td>
+        <td>-0.201</td>
+        <td>0.841</td>
+        <td>-0.037</td>
+        <td>0.030</td>
+    </tr>
+    <tr>
+        <td>Country_Name_frequency_encoded</td>
+        <td>-0.0169</td>
+        <td>0.014</td>
+        <td>-1.174</td>
+        <td>0.240</td>
+        <td>-0.045</td>
+        <td>0.011</td>
+    </tr>
+    <tr>
+        <td>Genre_Name_frequency_encoded</td>
+        <td>-0.0342</td>
+        <td>0.009</td>
+        <td>-3.705</td>
+        <td>0.000</td>
+        <td>-0.052</td>
+        <td>-0.016</td>
+    </tr>
+</table>
+
+
+
+We have approximately 7'000 observations in this dataset, which makes the results less robust. However, the analysis shows that movies released in months 5, 6, and 7 have the highest positive additive impact on box office revenue. Similarly, months 11 and 12 also show a significant increase, aligning with the known summer and winter box office booms. November also have low p-values, indicating statistical significance.
+
+- In contrast, months 8 and 9 have high p-values, making it difficult to draw meaningful conclusions about their impact on box office performance.
+
+- The variables director_frequency_encoded and country_name_frequency_encoded are statistically insignificant and have neglectably small values.
+
+- Budget also demonstrates a positive additive effect with a low p-value, suggesting that higher money invested in movie production, better it may perform at the box office.
+
+- On top of it, we see that total wins and total nominations for Oscar ceremony have high positive and statically significant impact, suggesting that "premium cinematography" can become a box office banger 
+
+
+<h3> IMDb Rating Regression </h3>
+
+
+<table>
+  <tr>
+    <th>Variable</th>
+    <th>Coefficient</th>
+    <th>Standard Error</th>
+    <th>t-value</th>
+    <th>P-value</th>
+    <th>95% Confidence Interval (Lower)</th>
+    <th>95% Confidence Interval (Upper)</th>
+  </tr>
+  <tr>
+    <td>Intercept</td>
+    <td>19.9772</td>
+    <td>1.024</td>
+    <td>19.508</td>
+    <td>0.000</td>
+    <td>17.970</td>
+    <td>21.985</td>
+  </tr>
+  <tr>
+    <td>Runtime</td>
+    <td>0.2628</td>
+    <td>0.014</td>
+    <td>18.880</td>
+    <td>0.000</td>
+    <td>0.236</td>
+    <td>0.290</td>
+  </tr>
+  <tr>
+    <td>budget</td>
+    <td>0.0462</td>
+    <td>0.010</td>
+    <td>4.508</td>
+    <td>0.000</td>
+    <td>0.026</td>
+    <td>0.066</td>
+  </tr>
+  <tr>
+    <td>Release_Year</td>
+    <td>-0.0101</td>
+    <td>0.001</td>
+    <td>-19.649</td>
+    <td>0.000</td>
+    <td>-0.011</td>
+    <td>-0.009</td>
+  </tr>
+  <tr>
+    <td>total_wins</td>
+    <td>-0.0891</td>
+    <td>0.020</td>
+    <td>-4.407</td>
+    <td>0.000</td>
+    <td>-0.129</td>
+    <td>-0.049</td>
+  </tr>
+  <tr>
+    <td>total_nominations</td>
+    <td>0.1442</td>
+    <td>0.008</td>
+    <td>18.616</td>
+    <td>0.000</td>
+    <td>0.129</td>
+    <td>0.159</td>
+  </tr>
+  <tr>
+    <td>Month_1</td>
+    <td>0.3030</td>
+    <td>0.041</td>
+    <td>7.329</td>
+    <td>0.000</td>
+    <td>0.222</td>
+    <td>0.384</td>
+  </tr>
+  <tr>
+    <td>Month_2</td>
+    <td>0.1004</td>
+    <td>0.043</td>
+    <td>2.357</td>
+    <td>0.018</td>
+    <td>0.017</td>
+    <td>0.184</td>
+  </tr>
+  <tr>
+    <td>Month_3</td>
+    <td>0.1692</td>
+    <td>0.040</td>
+    <td>4.182</td>
+    <td>0.000</td>
+    <td>0.090</td>
+    <td>0.248</td>
+  </tr>
+  <tr>
+    <td>Month_4</td>
+    <td>0.2096</td>
+    <td>0.041</td>
+    <td>5.140</td>
+    <td>0.000</td>
+    <td>0.130</td>
+    <td>0.290</td>
+  </tr>
+  <tr>
+    <td>Month_5</td>
+    <td>0.2532</td>
+    <td>0.039</td>
+    <td>6.462</td>
+    <td>0.000</td>
+    <td>0.176</td>
+    <td>0.330</td>
+  </tr>
+  <tr>
+    <td>Month_6</td>
+    <td>0.1546</td>
+    <td>0.042</td>
+    <td>3.707</td>
+    <td>0.000</td>
+    <td>0.073</td>
+    <td>0.236</td>
+  </tr>
+  <tr>
+    <td>Month_7</td>
+    <td>0.1341</td>
+    <td>0.043</td>
+    <td>3.090</td>
+    <td>0.002</td>
+    <td>0.049</td>
+    <td>0.219</td>
+  </tr>
+  <tr>
+    <td>Month_8</td>
+    <td>0.1078</td>
+    <td>0.039</td>
+    <td>2.742</td>
+    <td>0.006</td>
+    <td>0.031</td>
+    <td>0.185</td>
+  </tr>
+  <tr>
+    <td>Month_9</td>
+    <td>0.3345</td>
+    <td>0.036</td>
+    <td>9.246</td>
+    <td>0.000</td>
+    <td>0.264</td>
+    <td>0.405</td>
+  </tr>
+  <tr>
+    <td>Month_10</td>
+    <td>0.1658</td>
+    <td>0.038</td>
+    <td>4.329</td>
+    <td>0.000</td>
+    <td>0.091</td>
+    <td>0.241</td>
+  </tr>
+  <tr>
+    <td>Month_11</td>
+    <td>0.1333</td>
+    <td>0.044</td>
+    <td>3.041</td>
+    <td>0.002</td>
+    <td>0.047</td>
+    <td>0.219</td>
+  </tr>
+  <tr>
+    <td>Month_12</td>
+    <td>0.1750</td>
+    <td>0.039</td>
+    <td>4.529</td>
+    <td>0.000</td>
+    <td>0.099</td>
+    <td>0.251</td>
+  </tr>
+  <tr>
+    <td>production_companies_frequency_encoded</td>
+    <td>-0.0530</td>
+    <td>0.021</td>
+    <td>-2.557</td>
+    <td>0.011</td>
+    <td>-0.094</td>
+    <td>-0.012</td>
+  </tr>
+  <tr>
+    <td>director_frequency_encoded</td>
+    <td>0.5017</td>
+    <td>0.077</td>
+    <td>6.501</td>
+    <td>0.000</td>
+    <td>0.350</td>
+    <td>0.653</td>
+  </tr>
+  <tr>
+    <td>Language_Name_frequency_encoded</td>
+    <td>-0.0193</td>
+    <td>0.015</td>
+    <td>-1.275</td>
+    <td>0.202</td>
+    <td>-0.049</td>
+    <td>0.010</td>
+  </tr>
+  <tr>
+    <td>Country_Name_frequency_encoded</td>
+    <td>-0.1588</td>
+    <td>0.013</td>
+    <td>-12.101</td>
+    <td>0.000</td>
+    <td>-0.184</td>
+    <td>-0.133</td>
+  </tr>
+  <tr>
+    <td>Genre_Name_frequency_encoded</td>
+    <td>0.2114</td>
+    <td>0.009</td>
+    <td>23.027</td>
+    <td>0.000</td>
+    <td>0.193</td>
+    <td>0.229</td>
+  </tr>
+</table>
+
+When running almost the same regression, but using the different target, we can see that the results indicate that runtime has a consistently positive additive effect on movie ratings, aligning with previous findings.
+
+- Considering different months as the covariates, the analysis reveals that September, December, May, and January have the highest coefficients with low p-values, suggesting these months are strong predictors of higher movie ratings. Interestingly, the summer-boom effect observed in box office revenue is absent here. This could imply that while summer movies tend to perform well financially, movies released in colder months may resonate better with audiences or critics, possibly due to their depth or complexity.
+
+-  What is more, all Month coefficients have a positive values, that can be explained by the fact, that for "newer" movies (realized in 21st century), we typically have higher rating (simply because more people using the platform checked it) and higher data quality comparing to "old" movies. So better data quality, i.e. knowing of the month realized, typically makes the movies newer and therefore suggests higher ratings.
+
+- Speaking about frequency decoded features, frequent directors and genres emerge as positive predictors of higher movie ratings, indicating that experience and popular genres contribute to a movie's success.
+
+- When we consider IMDb rating as a target, we observe, that total_nominations for Oscar still has a positive and statically significant impact, while total_wins suddenly appear negative. It can be explained by some controversial movies being granted a win in Oscars committee, but not highly apprised by the audience.
+
+
+<h3> Oscar Nominations / Wins Regression </h3>
+
+We perform two regressions using the same features, but different targets: number of total nominations in Oscar committee and number of total wins awarded by Oscar for a given movie. **Coefficients should be the same right? Right? Turns, there is a major difference between this two models.**
+
+Let's compare only statistically significant coefficient between two regression. (`NA` will indicate that coefficient wasn't statistically significant in corresponding regression)
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable</th>
+            <th>Coefficient wins</th>
+            <th>Coefficient nominees</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Runtime</td>
+            <td>0.255</td>
+            <td>0.866</td>
+        </tr>
+        <tr>
+            <td>Budget</td>
+            <td>NA</td>
+            <td>0.103</td>
+        </tr>
+        <tr>
+            <td>Release Year</td>
+            <td>-0.127</td>
+            <td>-0.537</td>
+        </tr>
+        <tr>
+            <td>Month_6</td>
+            <td>NA</td>
+            <td>0.218</td>
+        </tr>
+        <tr>
+            <td>Month_8</td>
+            <td>0.087</td>
+            <td>NA</td>
+        </tr>
+        <tr>
+            <td>Month_9</td>
+            <td>NA</td>
+            <td>0.325</td>
+        </tr>
+        <tr>
+            <td>Month_10</td>
+            <td>NA</td>
+            <td>0.290</td>
+        </tr>
+        <tr>
+            <td>Month_11</td>
+            <td>0.157</td>
+            <td>0.455</td>
+        </tr>
+        <tr>
+            <td>Month_12</td>
+            <td>0.138</td>
+            <td>0.896</td>
+        </tr>
+        <tr> 
+            <td>Language_Name_frequency_encoded</td>
+            <td>0.078</td>
+            <td>0.229</td>
+        </tr>
+        <tr> 
+            <td>Country_Name_frequency_encoded</td>
+            <td>NA</td>
+            <td>0.081</td>
+        </tr>
+        <tr>
+            <td>Genre_Name_frequency_encoded</td>
+            <td>0.034</td>
+            <td>0.161</td>
+        </tr>
+    </tbody>
+</table>
+
+
+1. Turns out coefficients are very different, in the nominees regression, budget becomes statistically significant and having a positive impact on the target. That can be explained that significant money investment can increase hypo around your movie to such magnitude, that it will bring couple of nominations in some, might not really important, categories. Though with actual win - budget can hardly help you here
+
+2. We once again encounter the phenomenon of "summer film", which works rather well for nominees regression and has a positive impact, while for wining an oscar it is not significant statistically and films with a deep sense winning an oscar are getting released in November, December or (surprisingly) August. On top of it, the release month impact is much higher for number of total nominations as a target comparing with oscar winning target.
+
+
+<h2> Logistic Regression </h2>
+
+<h3> Find a "good" movies relevant features </h3>
+We understood, that oscar winning prediction or nomination is rather complicated problem, which requires much more data involved. Maybe we can at least define, will the film be considered good or not? Let's define the good film as one, laying in top 90% quantile of the IMDb distribution, i.e. having rating > 8. 
+
+Now, on top of our typical feature set, we will use total Oscar nominations/wins as additional features in the analysis (Is winning an oscar a guarantee to be perceived as a good film in the eyes of the audience).
+
+Let's explore selected results only to save some space purely (only coefficient on statistically significant covariates at 5% level)
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable</th>
+            <th>Coefficient</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Runtime</td>
+            <td>0.574</td>
+        </tr>
+        <tr>
+            <td>Month_5</td>
+            <td>0.743</td>
+        </tr>
+        <tr>
+            <td>Month_6</td>
+            <td>0.702</td>
+        </tr>
+        <tr>
+            <td>Month_7</td>
+            <td>0.717</td>
+        </tr>
+        <tr>
+            <td>Production companies</td>
+            <td>0.293</td>
+        </tr>
+        <tr>
+            <td>Director encoded</td>
+            <td>1.307</td>
+        </tr>
+        <tr>
+            <td>Language Name encoded</td>
+            <td>-0.255</td>
+        </tr>
+        <tr>
+            <td>Country Name encoded</td>
+            <td>-0.301</td>
+        </tr>
+        <tr>
+            <td>Total Nominations</td>
+            <td>0.300</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+When analyzing for probability of movie being good, it shows very interesting observations:
+
+- First of all, budget variable becomes statistically insignificant, meaning that regular viewers overall sympathy can be hardly impacted by the money invested
+
+- Total Oscar nominations, have high positive incremental impact on the movie being good, but here very likely it can be caused by reverse causality issue (what was first good movie review from the audience of oscar nominations?)
+
+- Total Oscar wins, however, is not statistically significant and have a negative coefficient of -0.0054, demonstrating issues, which we encountered above - some controversial movies being granted a win in Oscars committee at the same time being not highly apprised by the audience.
+
+That add very interesting ingredient to our formula of successful movie - **it should have a lot of oscar nominations, but might not a single to be lowed by the audience**.
+
+
+<h3> Section Conclusion </h3>
+Common Results:
+-   We can conclude that runtime seems to have a positive effect on both *IMDb Rating* and *Box Office Revenue* and *Oscar Nominations*. Similarly, director frequency (the number of times a director appears in movies) is a strong predictor of success for both metrics. Budget is not always, but typically a good incremental proxy of movie success.
+
+
+Metric-dependent results:
+-   For Box Office Revenue, the release month plays a significant role, with movies released in May, June, and July showing the highest positive impact. Budget and total wins/nominations also positively influence revenue.
+-   For IMDb Ratings, runtime, total nominations, and specific months (January, May, September, and December) are strong predictors. Interestingly, total wins have a negative impact, possibly due to controversial Oscar decisions.
+-   For Oscar Nominations/Wins, runtime and release month are crucial. Budget is significant for nominations but not for wins, indicating that while money can generate buzz, it doesn't guarantee an Oscar win.
+-   For predicting "good" movies (IMDb rating > 8), runtime, specific months (May, June, July), and total nominations are significant. Budget is not a predictor, and total wins are not statistically significant, highlighting the complexity of audience perception.
+-   When it comes to other covariates, they vary depending on the success metric. Country frequency positively influences Box Office Revenue—likely due to the dominance of U.S. films, which often gross high revenues. Genre frequency is a strong predictor of higher IMDb Ratings, potentially because popular genres tend to resonate better with audiences and critics. To have high IMBd rating it's quite indicator to be nominated by the Oscar committee.
+-   Additionally, we identified specific months where movies tend to perform better, though these vary depending on the success metric.
+
+Limitations:
+-   Most models have relatively low R-squared values, indicating room for improvement. This can be addressed by adding more data to the analysis and some feature engendering.  
+
 
 <h1>Data Story Conclusion 🎥 🧪🔬💊 </h1>
 
