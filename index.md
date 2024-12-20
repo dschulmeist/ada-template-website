@@ -1523,7 +1523,7 @@ Below plot demonstrates the correlation matrix between considered features:
     }];
     var layout = {
         title: {
-            text: 'Annotated Heatmap'
+            text: 'Feature Correlation heatmap'
         },
         annotations: [],
         xaxis: {
